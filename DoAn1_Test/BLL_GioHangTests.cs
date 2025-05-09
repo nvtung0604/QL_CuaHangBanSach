@@ -17,7 +17,7 @@ namespace DoAn1_Test
             DTO_GioHang dTO_GioHang = new DTO_GioHang
             {
                 MaGioHang = "GH202504080100",
-                MaKH = "KH001",
+                //MaKH = "KH001",
                 TrangThai = "Đã Thanh Toán",
                 ThoiGian = DateTime.Now,
                 MaNV = "NV001",
@@ -32,7 +32,7 @@ namespace DoAn1_Test
             DTO_GioHang dTO_GioHang = new DTO_GioHang
             {
                 MaGioHang = "GH20250408001",
-                MaKH = "KH001",
+                //MaKH = "KH001",
                 TrangThai = "Chưa thanh toán",
                 ThoiGian = DateTime.Now,
                 MaNV = "NV001",

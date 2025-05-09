@@ -12,9 +12,9 @@ namespace BLL
     public class BLL_ChiTietGioHang
     {
         DAL_ChiTietGioHang dal_ctgh = new DAL_ChiTietGioHang();
-        public int ThemDuLieuVaoChiTietGioHang(DTO_ChiTietGioHang ctgh)
+        public int ThemDuLieuVaoChiTietHoaDon(DTO_ChiTietGioHang ctgh)
         {
-            return dal_ctgh.ThemChiTietGioHang(ctgh);
+            return dal_ctgh.ThemChiTietHoaDon(ctgh);
         }
         public DataTable HienThiDuLieu(string MaGioHang)
         {

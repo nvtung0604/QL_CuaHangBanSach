@@ -15,16 +15,19 @@ namespace Presentation.Add
 {
     public partial class frmTaiKhoanAdd : Form
     {
-        frmTaiKhoan _fcha;
+        frmTaiKhoan _fcha; // Form cha
         BLL_DangNhap bll_dn = new BLL_DangNhap();
         Hopthoai ht = new Hopthoai();
+
         public frmTaiKhoanAdd(frmTaiKhoan fcha)
         {
             InitializeComponent();
             _fcha = fcha;
         }
+        public string role;
         private DTO_DangNhap Laythongtintuform()
         {
+            // Lấy thông tin từ các điều khiển trên form
             return new DTO_DangNhap
             {
                 MaTaiKhoan = txtMaTaiK.Text,
@@ -32,15 +35,17 @@ namespace Presentation.Add
                 MatKhau = txtMatK.Text,
                 Role = cboRole.Text,
                 MaNV = cboTenNV.SelectedValue?.ToString()
+                
             };
         }
+        
         public void LoadMaNV()
         {
             cboTenNV.DataSource = bll_dn.LoadMaNV();
-            cboTenNV.DisplayMember = "TenNV";
-            cboTenNV.ValueMember = "MaNV";
-            
+            cboTenNV.ValueMember = "MaNV";          // Mã nhân viên
+            cboTenNV.DisplayMember = "TenNV";       // Tên nhân viên
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,12 +53,16 @@ namespace Presentation.Add
 
         private void frmTaiKhoanAdd_Load(object sender, EventArgs e)
         {
-            LoadMaNV();  // Load danh sách nhân viên vào cboTenNV
+            LoadMaNV(); // Tải danh sách nhân viên vào ComboBox
 
-            // Kiểm tra nếu form đang ở chế độ thêm (không có tài khoản được chọn)
-            if (string.IsNullOrEmpty(txtMaTaiK.Text))
+            // Nếu là chế độ cập nhật
+            if (!string.IsNullOrEmpty(txtMaTaiK.Text))
             {
-                cboTenNV.SelectedIndex = -1;  // Đặt ô về trạng thái trống
+                cboTenNV.SelectedValue = _fcha.dgTaiKhoan.CurrentRow.Cells["dgcMaNV"].Value.ToString();
+            }
+            else
+            {
+                cboTenNV.SelectedIndex = -1; // Đặt về mặc định khi thêm mới
             }
         }
 
@@ -61,7 +70,8 @@ namespace Presentation.Add
         {
             try
             {
-                // Kiểm tra nếu dữ liệu bị thiếu
+               
+                // Kiểm tra dữ liệu đầu vào
                 if (string.IsNullOrEmpty(txtMaTaiK.Text) ||
                     string.IsNullOrEmpty(txtTenTK.Text) ||
                     string.IsNullOrEmpty(txtMatK.Text) ||
@@ -69,35 +79,43 @@ namespace Presentation.Add
                     cboTenNV.SelectedValue == null)
                 {
                     ht.ThongBao(this, "Thông báo", "Vui lòng kiểm tra lại, có trường dữ liệu bị thiếu!", Guna.UI2.WinForms.MessageDialogIcon.Warning);
-                    return; // Dừng tiến trình nếu dữ liệu thiếu
+                    return;
+                }
+                // Kiểm tra tên tài khoản đã tồn tại
+                if (bll_dn.KiemTraTenTaiKhoanTonTai(txtTenTK.Text))
+                {
+                    ht.ThongBao(this, "Thông báo", "Tên tài khoản đã tồn tại, vui lòng chọn tên khác!", Guna.UI2.WinForms.MessageDialogIcon.Warning);
+                    return; // Dừng tiến trình nếu tên tài khoản đã tồn tại
                 }
 
-                // Lấy thông tin từ form
+                // Lấy dữ liệu từ form
                 DTO_DangNhap dn = Laythongtintuform();
+                role = cboRole.Text;
 
-                // Kiểm tra nếu tài khoản đã tồn tại
-                if (bll_dn.KiemTraTenTaiKhoanTonTai(dn.MaTaiKhoan))
+                MessageBox.Show(role);
+                // Xử lý cập nhật hoặc thêm mới
+                if (bll_dn.KiemTraMaTaiKhoanTonTai(dn.MaTaiKhoan))
                 {
                     if (bll_dn.CapNhatTaiKhoan(dn) > 0)
                     {
-                        ht.ThongBao(this, "Thông báo", "Cập nhật thông tin tài khoản thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
+                        ht.ThongBao(this, "Thông báo", "Cập nhật tài khoản thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                         _fcha.HienThiDuLieu();
                     }
                     else
                     {
-                        ht.ThongBao(this, "Lỗi", "Không thể cập nhật thông tin tài khoản!", Guna.UI2.WinForms.MessageDialogIcon.Error);
+                        ht.ThongBao(this, "Lỗi", "Không thể cập nhật tài khoản!", Guna.UI2.WinForms.MessageDialogIcon.Error);
                     }
                 }
                 else
                 {
                     if (bll_dn.ThemTaiKhoan(dn) > 0)
                     {
-                        ht.ThongBao(this, "Thông báo", "Thêm thông tin tài khoản thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
+                        ht.ThongBao(this, "Thông báo", "Thêm tài khoản mới thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                         _fcha.HienThiDuLieu();
                     }
                     else
                     {
-                        ht.ThongBao(this, "Lỗi", "Không thể thêm thông tin tài khoản!", Guna.UI2.WinForms.MessageDialogIcon.Error);
+                        ht.ThongBao(this, "Lỗi", "Không thể thêm tài khoản!", Guna.UI2.WinForms.MessageDialogIcon.Error);
                     }
                 }
             }
@@ -107,5 +125,4 @@ namespace Presentation.Add
             }
         }
     }
-    
 }

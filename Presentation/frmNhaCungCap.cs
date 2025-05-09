@@ -34,7 +34,7 @@ namespace Presentation
             }
             if (dgNhaCungCap.Columns[e.ColumnIndex].Name == "dgcXoa")
             {
-                string ma = dgNhaCungCap.CurrentRow.Cells["dgcMaKH"].Value.ToString();
+                string ma = dgNhaCungCap.CurrentRow.Cells["dgcMaNCC"].Value.ToString();
 
                 if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa nhà cung cấp này không?") == DialogResult.Yes)
                 {

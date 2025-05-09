@@ -15,14 +15,14 @@ namespace DAL
         DBKetNoi kn = new DBKetNoi();
 
         // Hiển thị dữ liệu thể loại
-        public DataTable Hienthidulieu()
+        public DataTable HienThiDuLieu()
         {
             string query = "SELECT * FROM TheLoai";
-            return kn.Hienthidulieu(query);
+            return kn.HienThiDuLieu(query);
         }
 
         // các thao tác cơ bản
-        public int Themtheloai(DTO_TheLoai tl)
+        public int ThemTheLoai(DTO_TheLoai tl)
         {
             string query = "INSERT INTO TheLoai(MaTheLoai, TenTheLoai) VALUES(@MaTheLoai, @TenTheLoai)";
             SqlParameter[] parameters =
@@ -30,9 +30,9 @@ namespace DAL
                 new SqlParameter("@MaTheLoai", tl.MaTheLoai),
                 new SqlParameter("@TenTheLoai", tl.TenTheLoai)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public int Capnhattheloai(DTO_TheLoai tl)
+        public int CapNhatTheLoai(DTO_TheLoai tl)
         {
             string query = "UPDATE TheLoai SET TenTheLoai = @TenTheLoai WHERE MaTheLoai = @MaTheLoai";
             SqlParameter[] parameters =
@@ -40,32 +40,32 @@ namespace DAL
                 new SqlParameter("@MaTheLoai", tl.MaTheLoai),
                 new SqlParameter("@TenTheLoai", tl.TenTheLoai)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public int Xoatheloai(string MaTheLoai)
+        public int XoaTheLoai(string MaTheLoai)
         {
             string query = "DELETE FROM TheLoai WHERE MaTheLoai = @MaTheLoai";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaTheLoai", MaTheLoai)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
 
         // thao tác tìm kiếm
-        public DataTable Timkiemtheloai(string tukhoa)
+        public DataTable TimKiemTheLoai(string tukhoa)
         {
             string query = "SELECT * FROM TheLoai WHERE MaTheLoai LIKE @Tukhoa OR TenTheLoai LIKE @Tukhoa";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
 
 
-        // kiểm tra mã thể loại xem tồn tại chưa
-        public bool Kiemtramatheloai(string MaTheLoai)
+        // kiểm tra mã thể loại xem tồn tại chưaa
+        public bool KiemTraMaTheLoai(string MaTheLoai)
         {
 
             string query = "SELECT COUNT(*) FROM TheLoai WHERE MaTheLoai = @MaTheLoai";
@@ -74,8 +74,17 @@ namespace DAL
             {
                 new SqlParameter("@MaTheLoai", MaTheLoai)
             };
-            int count = kn.Thucthiexcutescalar(query, parameters);
+            int count = kn.ThucThiScalarSoNguyen(query, parameters);
             return count > 0;
+        }
+        public int CapNhatTheLoaiMacDinh(string mtl)
+        {
+            string query = "UPDATE Sach SET MaTheLoai = 'ChuaCo' WHERE MaTheLoai = @MaTheLoai";
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@MaTheLoai", mtl)
+            };
+            return kn.ThaoTacDuLieu(query, parameters);
         }
     }
 }

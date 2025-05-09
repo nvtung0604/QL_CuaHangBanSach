@@ -20,22 +20,22 @@ namespace DAL
         DataTable dt;
 
         // mở chuỗi kết nối
-        public void Moketnoi()
+        public void MoKetNoi()
         {
             if (con.State  == ConnectionState.Closed)
                 con.Open();
         }
         // đóng kết nối
-        public void Dongketnoi()
+        public void DongKetNoi()
         {
             if (con.State == ConnectionState.Open)
                 con.Close();
         }
 
         // hiển thị dữ liệu
-        public DataTable Hienthidulieu(string query, SqlParameter[] parameters = null)
+        public DataTable HienThiDuLieu(string query, SqlParameter[] parameters = null)
         {
-            Moketnoi();
+            MoKetNoi();
             cmd = new SqlCommand(query, con);
             if (parameters != null)
             {
@@ -44,40 +44,40 @@ namespace DAL
             da = new SqlDataAdapter(cmd);
             dt = new DataTable();
             da.Fill(dt);
-            Dongketnoi();
+            DongKetNoi();
             return dt;
 
         }
 
         // thêm, cập nhật, xóa dữ liệu
-        public int Thaotacdulieu(string query, SqlParameter[] parameter = null)
+        public int ThaoTacDuLieu(string query, SqlParameter[] parameter = null)
         {
             int ketqua = 0;
-            Moketnoi();
+            MoKetNoi();
             cmd = new SqlCommand(query, con);
             if (parameter != null)
             {
                 cmd.Parameters.AddRange(parameter);
             }
             ketqua = cmd.ExecuteNonQuery();
-            Dongketnoi();
+            DongKetNoi();
             return ketqua;
         }
-        // excutescalar
-        public int Thucthiexcutescalar(string query, SqlParameter[] parameters = null)
+        // trả về một giá trị là sốInvalid object name 'GioHang
+        public int ThucThiScalarSoNguyen(string query, SqlParameter[] parameters = null)
         {
-            Moketnoi();
+            MoKetNoi();
             cmd = new SqlCommand(query, con);
             if (parameters != null)
             {
                 cmd.Parameters.AddRange(parameters);
             }
             int ketqua = Convert.ToInt32(cmd.ExecuteScalar());
-            Dongketnoi();
+            DongKetNoi();
             return ketqua;
         }
         // procedure
-        public int ThaotacdulieuVoiProcedure(string procName, SqlParameter[] parameters)
+        public int ThaoTacDuLieuVoiProcedure(string procName, SqlParameter[] parameters)
         {
             using (SqlConnection conn = new SqlConnection(chuoiketnoi))
             {

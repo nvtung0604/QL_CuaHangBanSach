@@ -20,11 +20,11 @@ namespace DAL
             FROM Sach s
             JOIN NhaCungCap n ON s.MaNCC = n.MaNCC
             JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai";
-            return kn.Hienthidulieu(query);
+            return kn.HienThiDuLieu(query);
         }
 
         // Thêm sách
-        public int Themsach(DTO_Sach s)
+        public int ThemSach(DTO_Sach s)
         {
             string query = "INSERT INTO Sach(MaSach, TenSach, TacGia, MaTheLoai, GiaBan, SoLuongTon, NhaXuatBan, NamXuatBan, MaNCC, HinhAnh) " +
                            "VALUES(@MaSach, @TenSach, @TacGia, @MaTheLoai, @GiaBan, @SoLuongTon, @NhaXuatBan, @NamXuatBan, @MaNCC, @HinhAnh)";
@@ -43,11 +43,11 @@ namespace DAL
                 new SqlParameter("@HinhAnh", s.HinhAnh)
             };
 
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
 
         // Cập nhật sách
-        public int Capnhatsach(DTO_Sach s)
+        public int CapNhatSach(DTO_Sach s)
         {
             string query = "UPDATE Sach SET TenSach = @TenSach, TacGia = @TacGia, MaTheLoai = @MaTheLoai, GiaBan = @GiaBan, " +
                            "SoLuongTon = @SoLuongTon, NhaXuatBan = @NhaXuatBan, NamXuatBan = @NamXuatBan, MaNCC = @MaNCC, HinhAnh = @HinhAnh " +
@@ -67,52 +67,61 @@ namespace DAL
                 new SqlParameter("@HinhAnh", s.HinhAnh)
             };
 
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
 
         // Xóa sách
-        public int Xoasach(string MaSach)
+        public int XoaSach(string MaSach)
         {
             string query = "DELETE FROM Sach WHERE MaSach = @MaSach";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaSach", MaSach)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
 
         // Tìm kiếm sách
-        public DataTable Timkiemsach(string tuKhoa)
+        public DataTable TimKiemSach(string tuKhoa)
         {
-            string query = "SELECT * FROM Sach WHERE MaSach LIKE @TuKhoa OR TenSach LIKE @TuKhoa OR TacGia LIKE @TuKhoa";
+            string query = "SELECT * FROM Sach s " +
+               "JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai " +
+               "JOIN NhaCungCap ncc ON s.MaNCC = ncc.MaNCC " +
+               "WHERE (s.MaSach LIKE @TuKhoa " +
+               "OR s.TenSach LIKE @TuKhoa " +
+               "OR s.TacGia LIKE @TuKhoa " +
+               "OR s.NhaXuatBan LIKE @TuKhoa " +
+               "OR s.NamXuatBan LIKE @TuKhoa " +
+               "OR ncc.TenNCC LIKE @TuKhoa " +
+               "OR t.TenTheLoai LIKE @TuKhoa);";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@TuKhoa", "%" + tuKhoa + "%")
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
 
         // Kiểm tra mã sách đã tồn tại chưa
-        public bool Kiemtramasach(string maSach)
+        public bool KiemTraMaSach(string maSach)
         {
             string query = "SELECT COUNT(*) FROM Sach WHERE MaSach = @MaSach";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaSach", maSach)
             };
-            int count = kn.Thucthiexcutescalar(query, parameters);
+            int count = kn.ThucThiScalarSoNguyen(query, parameters);
             return count > 0;
         }
         DAL_TheLoai dal_tl = new DAL_TheLoai();
-        public DataTable Laydanhsachtheloai()
+        public DataTable LayDanhSachTheLoai()
         {
-            return dal_tl.Hienthidulieu();
+            return dal_tl.HienThiDuLieu();
         }
         DAL_NhaCungCap dal_ncc = new DAL_NhaCungCap();
-        public DataTable Laydanhsachmancc()
+        public DataTable LayDanhSachMaNCC()
         {
             
-            return dal_ncc.Hienthidulieu();
+            return dal_ncc.HienThiDuLieuNhaCungCap();
         }
     }
 }

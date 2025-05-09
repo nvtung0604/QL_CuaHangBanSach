@@ -20,12 +20,12 @@ namespace DAL
                 new SqlParameter("@TenTaiKhoan", dto_dn.TenTaiKhoan),
                 new SqlParameter("@MatKhau", dto_dn.MatKhau)
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
         public DataTable HienThiDuLieu()
         {
-            string query = "select tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV from TaiKhoan tk join NhanVien nv ON tk.MaNV = nv.MaNV;";
-            return kn.Hienthidulieu(query);
+            string query = "select tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV, nv.MaNV from TaiKhoan tk join NhanVien nv ON tk.MaNV = nv.MaNV";
+            return kn.HienThiDuLieu(query);
         }
         public int ThemTaiKhoan(DTO_DangNhap dn)
         {
@@ -38,7 +38,7 @@ namespace DAL
                 new SqlParameter("@Role", dn.Role),
                 new SqlParameter("@MaNV", dn.MaNV),
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
         public int CapNhatTaiKhoan(DTO_DangNhap dn)
         {
@@ -54,7 +54,7 @@ namespace DAL
             
             try
             {
-                return kn.Thaotacdulieu(query, parameters); // Ensure Thaotacdulieu accepts parameters
+                return kn.ThaoTacDuLieu(query, parameters); // Ensure Thaotacdulieu accepts parameters
             }
             catch (SqlException ex)
             {
@@ -69,9 +69,9 @@ namespace DAL
             {
                 new SqlParameter("@MaTaiKhoan", MaTaiKhoan)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public bool KiemTraTenTaiKhoanTonTai(string MaTaiKhoan)
+        public bool KiemTraMaTaiKhoanTonTai(string MaTaiKhoan)
         {
             string query = "SELECT COUNT(*) FROM TaiKhoan WHERE MaTaiKhoan = @MaTaiKhoan";
 
@@ -79,13 +79,13 @@ namespace DAL
             {
                 new SqlParameter("@MaTaiKhoan", MaTaiKhoan)
             };
-            int count = kn.Thucthiexcutescalar(query, parameters);
+            int count = kn.ThucThiScalarSoNguyen(query, parameters);
             return count > 0;
         }
         public DataTable LoadMaNV()
         {
-            string query = "select MaNV, TenNV from NhanVien ";
-            return kn.Hienthidulieu(query);
+            string query = "select * from NhanVien ";
+            return kn.HienThiDuLieu(query);
         }
 
         // chưa biết 15-4-25
@@ -95,6 +95,17 @@ namespace DAL
             SqlParameter[] parameters =
             {
                 new SqlParameter("@TenTaiKhoan", username)
+            };
+            object result = kn.ThucThiExecuteScalar(query, parameters);
+            return result != null ? result.ToString() : string.Empty;
+        }
+        // lấy mã nhân viên từ tên tài khoản
+        public string LayMaNhanVienTuTenTaiKhoan(string username)
+        {
+            string query = "SELECT MaNV FROM TaiKhoan WHERE TenTaiKhoan = @username";
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@username", username)
             };
             object result = kn.ThucThiExecuteScalar(query, parameters);
             return result != null ? result.ToString() : string.Empty;
@@ -112,16 +123,23 @@ namespace DAL
         public DataTable TimKiemTaiKhoan(string tukhoa)
         {
             string query = @"
-            SELECT tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV 
+            SELECT tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV
             FROM TaiKhoan tk
             LEFT JOIN NhanVien nv ON tk.MaNV = nv.MaNV
-            WHERE tk.MaTaiKhoan LIKE @Tukhoa OR tk.TenTaiKhoan LIKE N'@Tukhoa' OR tk.MatKhau LIKE @Tukhoa";
+            WHERE tk.MaTaiKhoan LIKE @Tukhoa OR tk.TenTaiKhoan LIKE N'@Tukhoa' OR tk.MatKhau LIKE @Tukhoa OR nv.TenNV Like @Tukhoa OR tk.Role Like @Tukhoa";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
-        
+        public bool KiemTraTenTaiKhoanTonTai(string tenTaiKhoan)
+        {
+            // Truy vấn cơ sở dữ liệu để kiểm tra
+            string query = $"SELECT COUNT(*) FROM TaiKhoan WHERE TenTaiKhoan = '{tenTaiKhoan}'";
+            int count = kn.ThucThiScalarSoNguyen(query); // Hàm thực thi truy vấn trả về số lượng
+            return count > 0; // Trả về true nếu tên tài khoản đã tồn tại
+        }
+
     }
 }

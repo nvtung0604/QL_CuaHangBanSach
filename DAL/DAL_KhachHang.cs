@@ -14,69 +14,68 @@ namespace DAL
         DBKetNoi kn = new DBKetNoi();
 
         // Hiển thị dữ liệu khách hàng
-        public DataTable Hienthidulieu()
+        public DataTable HienThiDuLieuKhachHang()
         {
             string query = "SELECT * FROM KhachHang";
-            return kn.Hienthidulieu(query);
+            return kn.HienThiDuLieu(query);
         }
 
         // các thao tác cơ bản
-        public int Themkhachhang(DTO_KhachHang kh)
+        public int ThemKhachHang(DTO_KhachHang kh)
         {
-            string query = "INSERT INTO KhachHang(MaKH, TenKH, SDT) VALUES(@MaKH, @TenKH, @SDT)";
+            string query = "INSERT INTO KhachHang(SDT, TenKH) VALUES(@SDT, @TenKH)";
             SqlParameter[] parameters =
             {
-                new SqlParameter("@MaKH", kh.MaKH),
+                new SqlParameter("@SDT", kh.SDT),
+                new SqlParameter("@TenKH", kh.TenKH)
+            };
+            return kn.ThaoTacDuLieu(query, parameters);
+        }
+        public int CapNhatKhachHang(DTO_KhachHang kh)
+        {
+            string query = "UPDATE KhachHang SET TenKH = @TenKH WHERE SDT = @SDT";
+            SqlParameter[] parameters =
+            {
                 new SqlParameter("@TenKH", kh.TenKH),
                 new SqlParameter("@SDT", kh.SDT)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public int Capnhatkhachhang(DTO_KhachHang kh)
+        public int XoaKhachHang(string SDT)
         {
-            string query = "UPDATE KhachHang SET TenKH = @TenKH, SDT = @SDT WHERE MaKH = @MaKH";
+            string query = "DELETE FROM KhachHang WHERE SDT = @SDT";
             SqlParameter[] parameters =
             {
-                new SqlParameter("@MaKH", kh.MaKH),
-                new SqlParameter("@TenKH", kh.TenKH),
-                new SqlParameter("@SDT", kh.SDT)
+                new SqlParameter("@SDT", SDT)
             };
-            return kn.Thaotacdulieu(query, parameters);
-        }
-        public int Xoakhachhang(string MaKH)
-        {
-            string query = "DELETE FROM KhachHang WHERE MaKH = @MaKH";
-            SqlParameter[] parameters =
-            {
-                new SqlParameter("@MaKH", MaKH)
-            };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
         
         // thao tác tìm kiếm
-        public DataTable Timkiemkhachhang(string tukhoa)
+        public DataTable TimKiemKhachHang(string tukhoa)
         {
-            string query = "SELECT * FROM KhachHang WHERE MaKH LIKE @Tukhoa OR TenKH LIKE @Tukhoa OR SDT LIKE @Tukhoa";           
+            string query = "SELECT * FROM KhachHang WHERE TenKH LIKE @Tukhoa OR SDT LIKE @Tukhoa";           
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
 
 
-        // kiểm tra mã khách hàng xem tồn tại chưa
-        public bool Kiemtramakhachhang(string MaKH)
+        // kiểm tra sdt khách hàng xem tồn tại chưa
+        public bool KiemTraSDTKhachHang(string SDT)
         {
             
-            string query = "SELECT COUNT(*) FROM KhachHang WHERE MaKH = @MaKH";
+            string query = "SELECT COUNT(*) FROM KhachHang WHERE SDT = @SDT";
             
             SqlParameter[] parameters =
             {
-                new SqlParameter("@MaKH", MaKH)
+                new SqlParameter("@SDT", SDT)
             };
-            int count = kn.Thucthiexcutescalar(query, parameters);
+            int count = kn.ThucThiScalarSoNguyen(query, parameters);
             return count > 0;
         }
+        
     }
 }

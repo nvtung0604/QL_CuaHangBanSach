@@ -16,7 +16,7 @@ namespace BLL
         DAL_GioHang dal_gh = new DAL_GioHang();
         public int ThemDuLieuGioHang(DTO_GioHang gh)
         {
-            return dal_gh.ThemGioHang(gh);
+            return dal_gh.ThemHoaDon(gh);
         }
         public DataTable HienThiDuLieu()
         {
@@ -53,11 +53,19 @@ namespace BLL
         }
         public int XoaDuLieu(string MaGioHang)
         {
-            return dal_gh.XoaGioHang(MaGioHang);
+            return dal_gh.XoaHoaDon(MaGioHang);
         }
         public DataTable HienThiDuLieu2()
         {
             return dal_gh.HienThiDuLieu2();
+        }
+        public DataTable LaySDTKhachHang(string sdt)
+        {
+            return dal_gh.LaySDTKhachHang(sdt);
+        }
+        public string LayTenKhachHangTuSDT(string sdt)
+        {
+            return dal_gh.LayTenKhacHangTuSDT(sdt);
         }
     }
 

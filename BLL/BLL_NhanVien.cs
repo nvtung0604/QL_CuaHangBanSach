@@ -14,28 +14,28 @@ namespace BLL
 
         public DataTable Hienthidulieu()
         {
-            return dal_nv.Hienthidulieu();
+            return dal_nv.HienThiDuLieu();
         }
 
         public int Themnhanvien(DTO_NhanVien nv)
         {
-            return dal_nv.Themnhanvien(nv);
+            return dal_nv.ThemNhanVien(nv);
         }
         public int Capnhatnhanvien(DTO_NhanVien nv)
         {
-            return dal_nv.Capnhatnhanvien(nv);
+            return dal_nv.CapNhatNhanVien(nv);
         }
         public int Xoanhanvien(string MaKH)
         {
-            return dal_nv.Xoanhanvien(MaKH);
+            return dal_nv.XoaNhanVien(MaKH);
         }
         public DataTable Timkiemnhanvien(string tukhoa)
         {
-            return dal_nv.Timkiemnhanvien(tukhoa);
+            return dal_nv.TimKiemNhanVien(tukhoa);
         }
         public bool Kiemtramanhanvien(string MaKH)
         {
-            return dal_nv.Kiemtramanhanvien(MaKH);
+            return dal_nv.KiemTraMaNhanVien(MaKH);
         }
     }
 }

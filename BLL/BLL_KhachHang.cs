@@ -11,29 +11,29 @@ namespace BLL
     public class BLL_KhachHang
     {
         private DAL_KhachHang dal_kh = new DAL_KhachHang();
-        public DataTable Hienthidulieu()
+        public DataTable HienThiDuLieuKhachHang()
         {
-            return dal_kh.Hienthidulieu();
+            return dal_kh.HienThiDuLieuKhachHang();
         }
-        public int Themkhachhang(DTO_KhachHang kh)
+        public int ThemKhachHang(DTO_KhachHang kh)
         {
-            return dal_kh.Themkhachhang(kh);
+            return dal_kh.ThemKhachHang(kh);
         }
-        public int Capnhatkhachhang(DTO_KhachHang kh)
+        public int CapNhatKhachHang(DTO_KhachHang kh)
         {
-            return dal_kh.Capnhatkhachhang(kh);
+            return dal_kh.CapNhatKhachHang(kh);
         }
-        public int Xoakhachhang(string MaKH)
+        public int XoaKhacHang(string SDT)
         {
-            return dal_kh.Xoakhachhang(MaKH);
+            return dal_kh.XoaKhachHang(SDT);
         }
-        public DataTable Timkiemkhachhang(string tukhoa)
+        public DataTable TimKiemKhachHang(string tukhoa)
         {
-            return dal_kh.Timkiemkhachhang(tukhoa);
+            return dal_kh.TimKiemKhachHang(tukhoa);
         }
-        public bool Kiemtramakhachhang(string MaKH)
+        public bool KiemTraSDTKhachHang(string SDT)
         {
-            return dal_kh.Kiemtramakhachhang(MaKH);
+            return dal_kh.KiemTraSDTKhachHang(SDT);
         }
     }
 }

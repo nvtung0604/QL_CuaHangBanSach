@@ -35,15 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.dgKhachHang = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dgcMaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcSoDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcCapNhat = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dgcXoa = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtTimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnThem = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.dgcTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcSoDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcCapNhat = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dgcXoa = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgKhachHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnThem)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +97,6 @@
             this.dgKhachHang.ColumnHeadersHeight = 40;
             this.dgKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgcMaKH,
             this.dgcTenKH,
             this.dgcSoDT,
             this.dgcCapNhat,
@@ -141,40 +139,6 @@
             this.dgKhachHang.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgKhachHang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgKhachHang_CellClick);
-            // 
-            // dgcMaKH
-            // 
-            this.dgcMaKH.HeaderText = "Mã khách hàng";
-            this.dgcMaKH.Name = "dgcMaKH";
-            this.dgcMaKH.ReadOnly = true;
-            // 
-            // dgcTenKH
-            // 
-            this.dgcTenKH.HeaderText = "Tên khách hàng";
-            this.dgcTenKH.Name = "dgcTenKH";
-            this.dgcTenKH.ReadOnly = true;
-            // 
-            // dgcSoDT
-            // 
-            this.dgcSoDT.HeaderText = "Số điện thoại";
-            this.dgcSoDT.Name = "dgcSoDT";
-            this.dgcSoDT.ReadOnly = true;
-            // 
-            // dgcCapNhat
-            // 
-            this.dgcCapNhat.HeaderText = "";
-            this.dgcCapNhat.Image = global::Presentation.Properties.Resources.icon_edit1;
-            this.dgcCapNhat.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dgcCapNhat.Name = "dgcCapNhat";
-            this.dgcCapNhat.ReadOnly = true;
-            // 
-            // dgcXoa
-            // 
-            this.dgcXoa.HeaderText = "";
-            this.dgcXoa.Image = global::Presentation.Properties.Resources.icon_delete1;
-            this.dgcXoa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dgcXoa.Name = "dgcXoa";
-            this.dgcXoa.ReadOnly = true;
             // 
             // dataGridViewImageColumn1
             // 
@@ -225,6 +189,34 @@
             this.btnThem.UseTransparentBackground = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
+            // dgcTenKH
+            // 
+            this.dgcTenKH.HeaderText = "Tên khách hàng";
+            this.dgcTenKH.Name = "dgcTenKH";
+            this.dgcTenKH.ReadOnly = true;
+            // 
+            // dgcSoDT
+            // 
+            this.dgcSoDT.HeaderText = "Số điện thoại";
+            this.dgcSoDT.Name = "dgcSoDT";
+            this.dgcSoDT.ReadOnly = true;
+            // 
+            // dgcCapNhat
+            // 
+            this.dgcCapNhat.HeaderText = "";
+            this.dgcCapNhat.Image = global::Presentation.Properties.Resources.icon_edit1;
+            this.dgcCapNhat.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dgcCapNhat.Name = "dgcCapNhat";
+            this.dgcCapNhat.ReadOnly = true;
+            // 
+            // dgcXoa
+            // 
+            this.dgcXoa.HeaderText = "";
+            this.dgcXoa.Image = global::Presentation.Properties.Resources.icon_delete1;
+            this.dgcXoa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dgcXoa.Name = "dgcXoa";
+            this.dgcXoa.ReadOnly = true;
+            // 
             // frmKhachHang
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -252,15 +244,14 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         public Guna.UI2.WinForms.Guna2DataGridView dgKhachHang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcMaKH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcTenKH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcSoDT;
-        private System.Windows.Forms.DataGridViewImageColumn dgcCapNhat;
-        private System.Windows.Forms.DataGridViewImageColumn dgcXoa;
         public Guna.UI2.WinForms.Guna2TextBox txtTimKiem;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
         public Guna.UI2.WinForms.Guna2PictureBox btnThem;
         public Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcTenKH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcSoDT;
+        private System.Windows.Forms.DataGridViewImageColumn dgcCapNhat;
+        private System.Windows.Forms.DataGridViewImageColumn dgcXoa;
     }
 }

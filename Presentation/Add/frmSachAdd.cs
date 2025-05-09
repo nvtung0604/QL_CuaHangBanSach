@@ -48,7 +48,7 @@ namespace Presentation
         // lấy danh sách thể loại
         public void Laydanhsachtheloai()
         {
-            DataTable dtTheL = bll_s.Laydanhsachtheloai();
+            DataTable dtTheL = bll_s.LayDanhSachTheLoai();
             cboTheL.DataSource = dtTheL;
             cboTheL.DisplayMember = "TenTheLoai";
             cboTheL.ValueMember = "MaTheLoai";
@@ -114,10 +114,10 @@ namespace Presentation
                     return;
                 }
 
-                if (bll_s.Kiemtramasach(sach.MaSach))
+                if (bll_s.KiemTraMaSach(sach.MaSach))
                 {
                     // Update existing book
-                    if (bll_s.Capnhatsach(sach) > 0)
+                    if (bll_s.CapNhatSach(sach) > 0)
                     {
                         ht.ThongBao(this, "Thông báo", "Cập nhật sách thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                         _fcha.Hienthidulieu();
@@ -130,7 +130,7 @@ namespace Presentation
                 else
                 {
                     // Add new book
-                    if (bll_s.Themsach(sach) > 0)
+                    if (bll_s.ThemSach(sach) > 0)
                     {
                         ht.ThongBao(this, "Thông báo", "Thêm sách thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                         _fcha.Hienthidulieu();

@@ -14,37 +14,37 @@ namespace BLL
         private DAL_Sach dal_s = new DAL_Sach();
 
         // Hiển thị dữ liệu
-        public DataTable Hienthidulieu()
+        public DataTable HienThiDuLieu()
         {
             return dal_s.Hienthidulieu();
         }
-        public int Themsach(DTO_Sach s)
+        public int ThemSach(DTO_Sach s)
         {
-            return dal_s.Themsach(s);
+            return dal_s.ThemSach(s);
         }
-        public int Capnhatsach(DTO_Sach s)
+        public int CapNhatSach(DTO_Sach s)
         {
-            return dal_s.Capnhatsach(s);
+            return dal_s.CapNhatSach(s);
         }
-        public int Xoasach(string MaSach)
+        public int XoaSach(string MaSach)
         {
-            return dal_s.Xoasach(MaSach);
+            return dal_s.XoaSach(MaSach);
         }
-        public DataTable Timkiemsach(string tuKhoa)
+        public DataTable TimKiemSach(string tuKhoa)
         {
-            return dal_s.Timkiemsach(tuKhoa);
+            return dal_s.TimKiemSach(tuKhoa);
         }
-        public bool Kiemtramasach(string MaSach)
+        public bool KiemTraMaSach(string MaSach)
         {
-            return dal_s.Kiemtramasach(MaSach);
+            return dal_s.KiemTraMaSach(MaSach);
         }
-        public DataTable Laydanhsachtheloai()
+        public DataTable LayDanhSachTheLoai()
         {
-            return dal_s.Laydanhsachtheloai();
+            return dal_s.LayDanhSachTheLoai();
         }
         public DataTable Laydanhsachmancc()
         {
-            return dal_s.Laydanhsachmancc();
+            return dal_s.LayDanhSachMaNCC();
         }
     }
 }

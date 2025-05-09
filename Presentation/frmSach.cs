@@ -36,7 +36,7 @@ namespace Presentation
         {
             // Ngăn tự tạo động cột
             dgSach.AutoGenerateColumns = false;
-            dgSach.DataSource = bll_s.Hienthidulieu(); // Hiển thị danh sách sách
+            dgSach.DataSource = bll_s.HienThiDuLieu(); // Hiển thị danh sách sách
             dgSach.Columns["dgcMaS"].DataPropertyName = "MaSach";
             dgSach.Columns["dgcTenS"].DataPropertyName = "TenSach";
             dgSach.Columns["dgcTacG"].DataPropertyName = "TacGia";
@@ -55,12 +55,12 @@ namespace Presentation
             if (!string.IsNullOrEmpty(tukhoa))
             {
                 // Tìm kiếm sách theo từ khóa
-                dgSach.DataSource = bll_s.Timkiemsach(tukhoa);
+                dgSach.DataSource = bll_s.TimKiemSach(tukhoa);
             }
             else
             {
                 // Hiển thị toàn bộ danh sách sách
-                dgSach.DataSource = bll_s.Hienthidulieu();
+                dgSach.DataSource = bll_s.HienThiDuLieu();
             }
         }
 
@@ -102,7 +102,7 @@ namespace Presentation
                 string ma = dgSach.CurrentRow.Cells["dgcMaS"].Value.ToString();
                 if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa sách này không?") == DialogResult.Yes)
                 {
-                    bll_s.Xoasach(ma);
+                    bll_s.XoaSach(ma);
                     Hienthidulieu();
                 }
             }

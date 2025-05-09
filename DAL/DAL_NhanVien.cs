@@ -12,14 +12,14 @@ namespace DAL
     {
         // các thành phần cần dùng
         DBKetNoi kn = new DBKetNoi();
-        public DataTable Hienthidulieu()
+        public DataTable HienThiDuLieu()
         {
             string query = "SELECT * FROM NhanVien";
-            return kn.Hienthidulieu(query);
+            return kn.HienThiDuLieu(query);
         }
 
         // các thao tác cơ bản
-        public int Themnhanvien(DTO_NhanVien nv)
+        public int ThemNhanVien(DTO_NhanVien nv)
         {
             string query = "INSERT INTO NhanVien (MaNV, TenNV, SDT) VALUES (@MaNV,@TenNV, @SDT)";
             SqlParameter[] parameters =
@@ -28,9 +28,9 @@ namespace DAL
                 new SqlParameter("@TenNV", nv.TenNV),
                 new SqlParameter("@SDT", nv.SDT)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public int Capnhatnhanvien(DTO_NhanVien nv)
+        public int CapNhatNhanVien(DTO_NhanVien nv)
         {
             string query = "UPDATE NhanVien SET TenNV = @TenNV, SDT = @SDT WHERE MaNV = @MaNV";
             SqlParameter[] parameters =
@@ -39,37 +39,37 @@ namespace DAL
                 new SqlParameter("@TenNV", nv.TenNV),
                 new SqlParameter("@SDT", nv.SDT)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
-        public int Xoanhanvien(string MaNV)
+        public int XoaNhanVien(string MaNV)
         {
             string query = "DELETE FROM NhanVien WHERE MaNV = @MaNV";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaNV", MaNV),
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
 
         //tìm kiếm nhân viên
-        public DataTable Timkiemnhanvien(string tukhoa)
+        public DataTable TimKiemNhanVien(string tukhoa)
         {
             string query = "SELECT * FROM NhanVien WHERE MaNV LIKE @Tukhoa OR TenNV LIKE @Tukhoa OR SDT LIKE @Tukhoa";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
         // kiểm tra mã nhân viên
-        public bool Kiemtramanhanvien(string MaNV)
+        public bool KiemTraMaNhanVien(string MaNV)
         {
             string query = "SELECT COUNT(*) FROM NhanVien WHERE MaNV = @MaNV";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaNV", MaNV)
             };
-            return kn.Thucthiexcutescalar(query, parameters) > 0;
+            return kn.ThucThiScalarSoNguyen(query, parameters) > 0;
         }
     }
 }

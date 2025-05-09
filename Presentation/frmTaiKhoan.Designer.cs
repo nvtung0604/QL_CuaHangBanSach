@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgTaiKhoan = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            this.txtTimKiem = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnThem = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.dgcMaTaiK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcTenTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcMatK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcTenNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcCapNhat = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgcXoa = new System.Windows.Forms.DataGridViewImageColumn();
-            this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
-            this.txtTimKiem = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btnThem = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgTaiKhoan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnThem)).BeginInit();
             this.SuspendLayout();
@@ -80,19 +81,19 @@
             // 
             this.dgTaiKhoan.AllowUserToAddRows = false;
             this.dgTaiKhoan.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgTaiKhoan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgTaiKhoan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTaiKhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTaiKhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgTaiKhoan.ColumnHeadersHeight = 40;
             this.dgTaiKhoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgTaiKhoan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -101,16 +102,17 @@
             this.dgcMatK,
             this.dgcRole,
             this.dgcTenNV,
+            this.dgcMaNV,
             this.dgcCapNhat,
             this.dgcXoa});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTaiKhoan.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTaiKhoan.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgTaiKhoan.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgTaiKhoan.Location = new System.Drawing.Point(72, 90);
             this.dgTaiKhoan.Name = "dgTaiKhoan";
@@ -142,58 +144,7 @@
             this.dgTaiKhoan.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgTaiKhoan.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgTaiKhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTaiKhoan_CellClick);
-            // 
-            // dgcMaTaiK
-            // 
-            this.dgcMaTaiK.HeaderText = "Mã tài khoản";
-            this.dgcMaTaiK.Name = "dgcMaTaiK";
-            this.dgcMaTaiK.ReadOnly = true;
-            // 
-            // dgcTenTK
-            // 
-            this.dgcTenTK.HeaderText = "Tên tài khoản";
-            this.dgcTenTK.MinimumWidth = 6;
-            this.dgcTenTK.Name = "dgcTenTK";
-            this.dgcTenTK.ReadOnly = true;
-            // 
-            // dgcMatK
-            // 
-            this.dgcMatK.HeaderText = "Mật khẩu";
-            this.dgcMatK.MinimumWidth = 6;
-            this.dgcMatK.Name = "dgcMatK";
-            this.dgcMatK.ReadOnly = true;
-            // 
-            // dgcRole
-            // 
-            this.dgcRole.HeaderText = "Vai trò";
-            this.dgcRole.MinimumWidth = 6;
-            this.dgcRole.Name = "dgcRole";
-            this.dgcRole.ReadOnly = true;
-            // 
-            // dgcTenNV
-            // 
-            this.dgcTenNV.HeaderText = "Tên nhân viên";
-            this.dgcTenNV.MinimumWidth = 6;
-            this.dgcTenNV.Name = "dgcTenNV";
-            this.dgcTenNV.ReadOnly = true;
-            // 
-            // dgcCapNhat
-            // 
-            this.dgcCapNhat.HeaderText = "";
-            this.dgcCapNhat.Image = global::Presentation.Properties.Resources.icon_edit1;
-            this.dgcCapNhat.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dgcCapNhat.MinimumWidth = 6;
-            this.dgcCapNhat.Name = "dgcCapNhat";
-            this.dgcCapNhat.ReadOnly = true;
-            // 
-            // dgcXoa
-            // 
-            this.dgcXoa.HeaderText = "";
-            this.dgcXoa.Image = global::Presentation.Properties.Resources.icon_delete1;
-            this.dgcXoa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dgcXoa.MinimumWidth = 6;
-            this.dgcXoa.Name = "dgcXoa";
-            this.dgcXoa.ReadOnly = true;
+           // this.dgTaiKhoan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTaiKhoan_CellContentClick);
             // 
             // guna2Separator1
             // 
@@ -250,6 +201,64 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Danh sách tài khoản";
             // 
+            // dgcMaTaiK
+            // 
+            this.dgcMaTaiK.HeaderText = "Mã tài khoản";
+            this.dgcMaTaiK.Name = "dgcMaTaiK";
+            this.dgcMaTaiK.ReadOnly = true;
+            // 
+            // dgcTenTK
+            // 
+            this.dgcTenTK.HeaderText = "Tên tài khoản";
+            this.dgcTenTK.MinimumWidth = 6;
+            this.dgcTenTK.Name = "dgcTenTK";
+            this.dgcTenTK.ReadOnly = true;
+            // 
+            // dgcMatK
+            // 
+            this.dgcMatK.HeaderText = "Mật khẩu";
+            this.dgcMatK.MinimumWidth = 6;
+            this.dgcMatK.Name = "dgcMatK";
+            this.dgcMatK.ReadOnly = true;
+            // 
+            // dgcRole
+            // 
+            this.dgcRole.HeaderText = "Vai trò";
+            this.dgcRole.MinimumWidth = 6;
+            this.dgcRole.Name = "dgcRole";
+            this.dgcRole.ReadOnly = true;
+            // 
+            // dgcTenNV
+            // 
+            this.dgcTenNV.HeaderText = "Tên nhân viên";
+            this.dgcTenNV.MinimumWidth = 6;
+            this.dgcTenNV.Name = "dgcTenNV";
+            this.dgcTenNV.ReadOnly = true;
+            // 
+            // dgcMaNV
+            // 
+            this.dgcMaNV.HeaderText = "Mã nhân viên";
+            this.dgcMaNV.Name = "dgcMaNV";
+            this.dgcMaNV.ReadOnly = true;
+            // 
+            // dgcCapNhat
+            // 
+            this.dgcCapNhat.HeaderText = "";
+            this.dgcCapNhat.Image = global::Presentation.Properties.Resources.icon_edit1;
+            this.dgcCapNhat.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dgcCapNhat.MinimumWidth = 6;
+            this.dgcCapNhat.Name = "dgcCapNhat";
+            this.dgcCapNhat.ReadOnly = true;
+            // 
+            // dgcXoa
+            // 
+            this.dgcXoa.HeaderText = "";
+            this.dgcXoa.Image = global::Presentation.Properties.Resources.icon_delete1;
+            this.dgcXoa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dgcXoa.MinimumWidth = 6;
+            this.dgcXoa.Name = "dgcXoa";
+            this.dgcXoa.ReadOnly = true;
+            // 
             // frmTaiKhoan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -287,6 +296,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcMatK;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcRole;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcTenNV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcMaNV;
         private System.Windows.Forms.DataGridViewImageColumn dgcCapNhat;
         private System.Windows.Forms.DataGridViewImageColumn dgcXoa;
     }

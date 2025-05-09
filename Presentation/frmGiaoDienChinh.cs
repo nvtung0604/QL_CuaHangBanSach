@@ -24,11 +24,13 @@ namespace Presentation
             get { return role; }
             set { role = value; }
         }
-        public frmGiaoDienChinh(string tendn, string role)
+        private string _manv;
+        public frmGiaoDienChinh(string tendn, string role, string manv)
         {
             InitializeComponent();
             TenNhanVien = tendn;
             Role = role;
+            _manv = manv;
             this.IsMdiContainer = true;
         }
         // đưa form lên giao diện chính
@@ -43,6 +45,8 @@ namespace Presentation
         
         private void frmGiaoDienChinh_Load(object sender, EventArgs e)
         {
+            lbUser.Visible = false;
+            guna2PictureBox2.Visible = false;
             // Hiển thị Home mặc định
             ThemFormLenGiaoDienChinh(new frmHome());
             btnHome.Checked = true;
@@ -90,6 +94,7 @@ namespace Presentation
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
+            
             ThemFormLenGiaoDienChinh(new frmTaiKhoan());
         }
 
@@ -115,7 +120,7 @@ namespace Presentation
 
         private void btnPOS_Click_1(object sender, EventArgs e)
         {
-            ThemFormLenGiaoDienChinh(new frmPOSs());
+            ThemFormLenGiaoDienChinh(new frmPOSs(null, _manv));
         }
 
         private void btnReport_Click(object sender, EventArgs e)

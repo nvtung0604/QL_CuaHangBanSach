@@ -9,7 +9,7 @@ namespace DTO
     public class DTO_GioHang
     {
         public string MaGioHang { get; set; }
-        public string MaKH { get; set; }
+        public string SDT { get; set; }
         public string TrangThai { get; set; }
         public DateTime ThoiGian { get; set; }
         public double TongTien { get; set; }

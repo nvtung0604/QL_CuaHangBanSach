@@ -27,11 +27,13 @@ namespace Presentation
         BLL_POS bus = new BLL_POS();
         //public static bool hienthicapnhat = false;
         public string MaGioHang { get; set; }
-        public frmPOSs(string MaGH = null)
+        private string _manv;
+        public frmPOSs(string MaGH = null, string manv = null)
         {
             InitializeComponent();
 
             MaGioHang = MaGH;
+            _manv = manv;
             
         }
 
@@ -79,7 +81,8 @@ namespace Presentation
             dgPOS.AlternatingRowsDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#f5f5f5");
             dgPOS.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
-
+            // gợi ý số điện thoại
+            SetUpAutoComplete();
 
 
             if (!string.IsNullOrEmpty(MaGioHang))
@@ -88,8 +91,53 @@ namespace Presentation
                 
             }
         }
-       
-        
+        // Tạo danh sách tất cả số điện thoại sẵn
+        private AutoCompleteStringCollection soDienThoaiCollection = new AutoCompleteStringCollection();
+
+        // Gọi khi load form
+        private void SetUpAutoComplete()
+        {
+            txtSoDT.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtSoDT.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Lấy tất cả số điện thoại từ database 1 lần thôi
+            DataTable dt = bll_gh.LaySDTKhachHang(null); // truyền null hoặc bỏ tham số luôn
+            foreach (DataRow row in dt.Rows)
+            {
+                soDienThoaiCollection.Add(row["SDT"].ToString());
+            }
+
+            txtSoDT.AutoCompleteCustomSource = soDienThoaiCollection;
+        }
+
+        private void txtSoDT_TextChanged(object sender, EventArgs e)
+        {
+            string sdt = txtSoDT.Text.Trim(); // lấy giá trị từ textbox
+            if (sdt.Length > 0)
+            {
+                string tenkh = bll_gh.LayTenKhachHangTuSDT(sdt);
+                if (!string.IsNullOrEmpty(tenkh))
+                {
+                    lblTenKH.Text = tenkh;
+                }
+                else
+                {
+                    lblTenKH.Text = "Không tìm thấy khách hàng!";
+                }
+            }
+            else
+            {
+                lblTenKH.Text = ""; // Nếu trống thì xóa luôn label
+            }
+        }
+
+
+        private void txtSoDT_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+
         // Phương thức Load thể loại
         private Guna2Button selectedButton = null;  // Biến để lưu nút được chọn
 
@@ -305,7 +353,7 @@ namespace Presentation
         {
             frmGioHang fGH = new frmGioHang();
             //fGH.ShowDialog();
-            ht.BlurBackground(fGH);
+            fGH.ShowDialog();
             // Kiểm tra giá trị mã giỏ hàng trước khi truyền
             Macapnhat = fGH.maGioHang;
             if (string.IsNullOrEmpty(fGH.maGioHang))
@@ -462,16 +510,14 @@ namespace Presentation
             if (string.IsNullOrEmpty(Macapnhat))
             {
                 // Tạo mới giỏ hàng
-                frmChonNhanVien fCNV = new frmChonNhanVien();
-                fCNV.ShowDialog();
+                
 
-                frmChonKhachHang fCKH = new frmChonKhachHang();
-                fCKH.ShowDialog();
+
 
                 DTO_GioHang gioHang = new DTO_GioHang
                 {
-                    MaKH = fCKH.MaKH,
-                    MaNV = fCNV.MaNV
+                    SDT = txtSoDT.Text,
+                    MaNV = _manv
                 };
 
                 string maGioHang = bll_gh.ThemGioHangSinhMa(gioHang);
@@ -497,7 +543,7 @@ namespace Presentation
                             GiaBan = giaBan
                         };
 
-                        int kq = bll_ctgh.ThemDuLieuVaoChiTietGioHang(ctgh);
+                        int kq = bll_ctgh.ThemDuLieuVaoChiTietHoaDon(ctgh);
 
                         if (kq > 0) soLuongChiTiet++;
                     }
@@ -546,17 +592,20 @@ namespace Presentation
 
         private void btnThemVGH_Click(object sender, EventArgs e)
         {
-            frmChonNhanVien fCNV = new frmChonNhanVien();
-            fCNV.ShowDialog();
+            
 
-            frmChonKhachHang fCKH = new frmChonKhachHang();
-            fCKH.ShowDialog();
+            if (string.IsNullOrWhiteSpace(txtSoDT.Text))
+            {
+                ht.ThongBao(this, "Cảnh báo", "Số điện thoại không được để trống!", MessageDialogIcon.Warning);
+                txtSoDT.Focus();
+                return; // Ngắt luôn, không cho chạy tiếp
+            }
 
             // Tạo đối tượng giỏ hàng
             DTO_GioHang gioHang = new DTO_GioHang
             {
-                MaKH = fCKH.MaKH,
-                MaNV = fCNV.MaNV
+                SDT = txtSoDT.Text,
+                MaNV = _manv
             };
 
             // Thêm vào CSDL và nhận lại mã giỏ hàng
@@ -589,7 +638,7 @@ namespace Presentation
                     ctgh.SoLuong = soLuong;
                     ctgh.GiaBan = giaBan;
 
-                    int kq = bll_ctgh.ThemDuLieuVaoChiTietGioHang(ctgh);
+                    int kq = bll_ctgh.ThemDuLieuVaoChiTietHoaDon(ctgh);
 
                     if (kq > 0)
                     {
@@ -617,6 +666,7 @@ namespace Presentation
             lblTotal.Text = "0";
             lbTienPT.Text = "0";
             txtGiamGia.Text = "0";
+            txtSoDT.Text = "";
         }
         private void dgPOS_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -725,6 +775,9 @@ namespace Presentation
                 btnCapNhatt.Enabled = false;
             }
         }
+
+       
+
     }
 
 }

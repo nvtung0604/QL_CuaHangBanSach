@@ -32,9 +32,13 @@ namespace BLL
         {
             return dn.XoaTaiKhoan(MaTaiKhoan);
         }
-        public bool KiemTraTenTaiKhoanTonTai(string MaTaiKhoan)
+        public bool KiemTraMaTaiKhoanTonTai(string MaTaiKhoan)
         {
-            return dn.KiemTraTenTaiKhoanTonTai(MaTaiKhoan);
+            return dn.KiemTraMaTaiKhoanTonTai(MaTaiKhoan);
+        }
+        public bool KiemTraTenTaiKhoanTonTai(string TenTaiKhoan)
+        {
+            return dn.KiemTraTenTaiKhoanTonTai(TenTaiKhoan);
         }
         public DataTable LoadMaNV()
         {
@@ -43,6 +47,10 @@ namespace BLL
         public string LayTenNhanVien(string username)
         {
             return dn.LayTenNhanVienTuTenTaiKhoan(username);
+        }
+        public string LayMaNhanVien(string username)
+        {
+            return dn.LayMaNhanVienTuTenTaiKhoan(username);
         }
         public string LayQuyenTuTen(string username)
         {

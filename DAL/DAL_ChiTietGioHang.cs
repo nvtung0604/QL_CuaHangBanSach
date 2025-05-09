@@ -12,9 +12,11 @@ namespace DAL
     public class DAL_ChiTietGioHang
     {
         DBKetNoi kn = new DBKetNoi();
-        public int ThemChiTietGioHang(DTO_ChiTietGioHang ctgh)
+        public int ThemChiTietHoaDon(DTO_ChiTietGioHang ctgh)
         {
-            string query = "INSERT INTO GioHang_ChiTiet (MaGioHang, MaSach, SoLuong, GiaBan) VALUES (@MaGioHang, @MaSach, @SoLuong, @GiaBan)";
+            
+            string query = "INSERT INTO HoaDon_ChiTiet (MaGioHang, MaSach, SoLuong, GiaBan) VALUES (@MaGioHang, @MaSach, @SoLuong, @GiaBan)";
+            Console.WriteLine(query);
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaGioHang", ctgh.MaGioHang),
@@ -22,19 +24,19 @@ namespace DAL
                 new SqlParameter("@SoLuong", ctgh.SoLuong),
                 new SqlParameter("@GiaBan", ctgh.GiaBan)
             };
-            return kn.Thaotacdulieu(query, parameters);
+            return kn.ThaoTacDuLieu(query, parameters);
         }
         public DataTable HienThiDuLieu(string MaGioHang)
         {
             string query = "SELECT gh.MaSach, s.TenSach, gh.SoLuong, gh.GiaBan " +
-               "FROM GioHang_ChiTiet gh " +
+               "FROM HoaDon_ChiTiet gh " +
                "JOIN Sach s ON gh.MaSach = s.MaSach " +
                "WHERE gh.MaGioHang = @MaGioHang";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaGioHang", MaGioHang)
             };
-            return kn.Hienthidulieu(query, parameters);
+            return kn.HienThiDuLieu(query, parameters);
         }
     }
 }

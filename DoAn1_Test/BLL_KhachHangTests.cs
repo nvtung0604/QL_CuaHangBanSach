@@ -17,11 +17,11 @@ namespace DoAn1_Test
         {
             DTO_KhachHang dto = new DTO_KhachHang
             {
-                MaKH = "KH005",
+                //MaKH = "KH005",
                 TenKH = "Lâm Trần Tuấn",
                 SDT = "0667669978"
             };
-            int result = kh.Themkhachhang(dto);
+            int result = kh.ThemKhachHang(dto);
             Assert.That(result, Is.EqualTo(1));
         }
         [Test]
@@ -29,22 +29,22 @@ namespace DoAn1_Test
         {
             DTO_KhachHang dto = new DTO_KhachHang
             {
-                MaKH = "KH001",
+                //MaKH = "KH001",
                 TenKH = "Nguyễn Văn An",
                 SDT = "0901111222"
             };
-            int result = kh.Capnhatkhachhang(dto);
+            int result = kh.CapNhatKhachHang(dto);
             Assert.That(result, Is.EqualTo(1));
         }
-        public void XoaKhachHang()
-        {
-            DTO_KhachHang dto = new DTO_KhachHang
-            {
-                MaKH = "KH001",
+        //public void XoaKhachHang()
+        //{
+        //    DTO_KhachHang dto = new DTO_KhachHang
+        //    {
+        //        MaKH = "KH001",
                 
-            };
-            int result = kh.Xoakhachhang(dto.MaKH);
-            Assert.That(result, Is.EqualTo(1));
-        }
+        //    };
+        //    int result = kh.Xoakhachhang(dto.MaKH);
+        //    Assert.That(result, Is.EqualTo(1));
+        //}
     }
 }

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Presentation.HopThoai;
 namespace Presentation
 {
     public partial class frmDangNhap : Form
@@ -21,6 +21,7 @@ namespace Presentation
             InitializeComponent();
         }
         BLL_DangNhap bll_dn = new BLL_DangNhap();
+        Hopthoai ht = new Hopthoai();
         public DTO_DangNhap LayThongTinTuForm()
         {
             DTO_DangNhap dto_dn = new DTO_DangNhap
@@ -50,11 +51,13 @@ namespace Presentation
             {
                 string tenTaiKhoan = dto_dn.TenTaiKhoan;
                 string tenNhanVien = bll_dn.LayTenNhanVien(tenTaiKhoan);
+                string maNhanVien = bll_dn.LayMaNhanVien(tenTaiKhoan);
                 string role = bll_dn.LayQuyenTuTen(tenTaiKhoan);
 
                 MessageBox.Show("Đăng nhập thành công");
-
-                frmGiaoDienChinh fGDC = new frmGiaoDienChinh(tenNhanVien, role); // truyền tên nhân viên
+                //MessageBox.Show($"Chào mừng {role} - {tenNhanVien}");
+                ht.ThongBao(this, "Thông báo", $"Chào mừng {role} - {tenNhanVien}", Guna.UI2.WinForms.MessageDialogIcon.Information);
+                frmGiaoDienChinh fGDC = new frmGiaoDienChinh(tenNhanVien, role, maNhanVien); // truyền tên nhân viên
                 fGDC.ShowDialog();
                 this.Close();
             }

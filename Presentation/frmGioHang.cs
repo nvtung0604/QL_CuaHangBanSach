@@ -144,12 +144,14 @@ namespace Presentation
             dgGioHang.DataSource = pos.HienThiGioHangDaThanhToan();
             dgGioHang.Columns["dgcInHD"].Visible = true;
             dgGioHang.Columns["dgcXoa"].Visible = false;
+            dgGioHang.Columns["dgcCapNhat"].Visible = false;
             dgGioHang.Columns["dgcMaGH"].DataPropertyName = "MaGioHang";
             dgGioHang.Columns["dgcTenKH"].DataPropertyName = "TenKH";
             dgGioHang.Columns["dgcTrangT"].DataPropertyName = "TrangThai";
             dgGioHang.Columns["dgcThoiG"].DataPropertyName = "ThoiGian";
             dgGioHang.Columns["dgcTenNV"].DataPropertyName = "TenNV";
             dgGioHang.Columns["dgcTongT"].DataPropertyName = "TongTien";
+            
         }
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)

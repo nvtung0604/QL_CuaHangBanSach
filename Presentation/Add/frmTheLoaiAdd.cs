@@ -43,6 +43,7 @@ namespace Presentation.Add
             {
                 if (bll_tl.Capnhattheloai(tl) > 0)
                 {
+                    
                     ht.ThongBao(this, "Thông báo", "Cập nhật thông tin thể loại thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                     _fcha.Hienthidulieu();
                 }

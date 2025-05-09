@@ -383,9 +383,29 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_customer_checked2 {
+            get {
+                object obj = ResourceManager.GetObject("icon_customer_checked2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_customer1 {
             get {
                 object obj = ResourceManager.GetObject("icon_customer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_customer2 {
+            get {
+                object obj = ResourceManager.GetObject("icon_customer2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -693,6 +713,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_provider_checked1 {
+            get {
+                object obj = ResourceManager.GetObject("icon_provider_checked1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_provider1 {
             get {
                 object obj = ResourceManager.GetObject("icon_provider1", resourceCulture);
@@ -706,6 +736,16 @@ namespace Presentation.Properties {
         internal static System.Drawing.Bitmap icon_provider2 {
             get {
                 object obj = ResourceManager.GetObject("icon_provider2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_provider3 {
+            get {
+                object obj = ResourceManager.GetObject("icon_provider3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -29,7 +29,7 @@ namespace DoAn1_Test
                 NamXuatBan = 2018,
                 HinhAnh = File.ReadAllBytes(@"D:\Workspace\Project1\DoAn1\Images\Img_Sach\asach_demtruongtamtoi.png") // Đường dẫn thực tế
             };
-            int result = s.Themsach(dTO_Sach);
+            int result = s.ThemSach(dTO_Sach);
             Assert.That(result, Is.EqualTo(1));
         }
         [Test]
@@ -48,7 +48,7 @@ namespace DoAn1_Test
                 NamXuatBan = 2018,
                 //HinhAnh = File.ReadAllBytes(@"D:\Workspace\Project1\DoAn1\Images\Img_Sach\asach_demtruongtamtoi.png") // Đường dẫn thực tế
             };
-            int result = s.Capnhatsach(dTO_Sach);
+            int result = s.CapNhatSach(dTO_Sach);
             Assert.That(result, Is.EqualTo(1));
         }
     }

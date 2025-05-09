@@ -76,11 +76,11 @@ namespace BLL
         }
         public int LaySoLuongTonTheoMa(string maS)
         {
-            return dal_pos.laySoLuongTonTheoMa(maS);
+            return dal_pos.LaySoLuongTonTheoMa(maS);
         }
-        public bool KiemTraMaGioHang(string magh)
+        public bool KiemTraMaHoaDon(string magh)
         {
-            return dal_pos.KiemTraMaGioHang(magh);
+            return dal_pos.KiemTraMaHoaDon(magh);
         }
     }
 }

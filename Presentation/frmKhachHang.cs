@@ -34,8 +34,7 @@ namespace Presentation
         {
             // ngăn tự tạo động cột
             dgKhachHang.AutoGenerateColumns = false;
-            dgKhachHang.DataSource = bll_kh.Hienthidulieu();
-            dgKhachHang.Columns["dgcMaKH"].DataPropertyName = "MaKH";
+            dgKhachHang.DataSource = bll_kh.HienThiDuLieuKhachHang();
             dgKhachHang.Columns["dgcTenKH"].DataPropertyName = "TenKH";
             dgKhachHang.Columns["dgcSoDT"].DataPropertyName = "SDT";
         }
@@ -44,12 +43,12 @@ namespace Presentation
             string tukhoa = txtTimKiem.Text.Trim();
             if (!string.IsNullOrEmpty(tukhoa))
             {
-                dgKhachHang.DataSource = bll_kh.Timkiemkhachhang(tukhoa);
+                dgKhachHang.DataSource = bll_kh.TimKiemKhachHang(tukhoa);
             }
             else
             {
                
-                dgKhachHang.DataSource = bll_kh.Hienthidulieu();
+                dgKhachHang.DataSource = bll_kh.HienThiDuLieuKhachHang();
             }
         }
         
@@ -58,7 +57,7 @@ namespace Presentation
             if (dgKhachHang.Columns[e.ColumnIndex].Name == "dgcCapNhat")
             {
                 frmKhachHangAdd fKHadd = new frmKhachHangAdd(this);
-                fKHadd.txtMaKH.Text = dgKhachHang.CurrentRow.Cells["dgcMaKH"].Value.ToString();
+                
                 fKHadd.txtTenKH.Text = dgKhachHang.CurrentRow.Cells["dgcTenKH"].Value.ToString();
                 fKHadd.txtSoDT.Text = dgKhachHang.CurrentRow.Cells["dgcSoDT"].Value.ToString();
                 ht.BlurBackground(fKHadd);
@@ -69,7 +68,7 @@ namespace Presentation
                 
                 if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa khách hàng này không?") == DialogResult.Yes)
                 {
-                    bll_kh.Xoakhachhang(ma);
+                    bll_kh.XoaKhacHang(ma);
                     Hienthidulieu();
                 }
             }
