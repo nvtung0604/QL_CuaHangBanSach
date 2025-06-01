@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGiaoDienChinh));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lbUser = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.panelChinh = new Guna.UI2.WinForms.Guna2Panel();
             this.btnNhaCC = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnReport = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnStaff = new Guna.UI2.WinForms.Guna2TileButton();
@@ -44,12 +45,11 @@
             this.btnCustomer = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnHome = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnExit = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.panelChinh = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel1.SuspendLayout();
-            this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
+            this.guna2Panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -77,6 +77,33 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Book Store \r\nManagement System";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::Presentation.Properties.Resources.gdc_books2;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(9, 1);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(86, 76);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
+            // 
+            // guna2PictureBox2
+            // 
+            this.guna2PictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox2.Image = global::Presentation.Properties.Resources.icon_user1;
+            this.guna2PictureBox2.ImageRotate = 0F;
+            this.guna2PictureBox2.Location = new System.Drawing.Point(935, 7);
+            this.guna2PictureBox2.Name = "guna2PictureBox2";
+            this.guna2PictureBox2.Size = new System.Drawing.Size(78, 46);
+            this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox2.TabIndex = 1;
+            this.guna2PictureBox2.TabStop = false;
+            this.guna2PictureBox2.UseTransparentBackground = true;
             // 
             // lbUser
             // 
@@ -110,15 +137,6 @@
             this.guna2Panel2.Size = new System.Drawing.Size(105, 708);
             this.guna2Panel2.TabIndex = 1;
             // 
-            // panelChinh
-            // 
-            this.panelChinh.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelChinh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChinh.Location = new System.Drawing.Point(105, 79);
-            this.panelChinh.Name = "panelChinh";
-            this.panelChinh.Size = new System.Drawing.Size(948, 708);
-            this.panelChinh.TabIndex = 2;
-            // 
             // btnNhaCC
             // 
             this.btnNhaCC.BorderRadius = 4;
@@ -137,7 +155,7 @@
             this.btnNhaCC.Name = "btnNhaCC";
             this.btnNhaCC.Size = new System.Drawing.Size(77, 63);
             this.btnNhaCC.TabIndex = 5;
-            this.btnNhaCC.Text = "Report";
+            this.btnNhaCC.Text = "Provider";
             this.btnNhaCC.Click += new System.EventHandler(this.btnNhaCC_Click);
             // 
             // btnReport
@@ -320,32 +338,14 @@
             this.btnExit.UseTransparentBackground = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // guna2PictureBox1
+            // panelChinh
             // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::Presentation.Properties.Resources.gdc_books2;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(9, 1);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(86, 76);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
-            // 
-            // guna2PictureBox2
-            // 
-            this.guna2PictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox2.Image = global::Presentation.Properties.Resources.icon_user1;
-            this.guna2PictureBox2.ImageRotate = 0F;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(935, 7);
-            this.guna2PictureBox2.Name = "guna2PictureBox2";
-            this.guna2PictureBox2.Size = new System.Drawing.Size(78, 46);
-            this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox2.TabIndex = 1;
-            this.guna2PictureBox2.TabStop = false;
-            this.guna2PictureBox2.UseTransparentBackground = true;
+            this.panelChinh.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChinh.Location = new System.Drawing.Point(105, 79);
+            this.panelChinh.Name = "panelChinh";
+            this.panelChinh.Size = new System.Drawing.Size(948, 708);
+            this.panelChinh.TabIndex = 2;
             // 
             // frmGiaoDienChinh
             // 
@@ -363,9 +363,9 @@
             this.Load += new System.EventHandler(this.frmGiaoDienChinh_Load);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            this.guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
+            this.guna2Panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

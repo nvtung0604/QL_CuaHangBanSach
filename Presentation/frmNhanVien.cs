@@ -19,6 +19,7 @@ namespace Presentation
         {
             InitializeComponent();
         }
+        public string manv;
 
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
@@ -56,24 +57,37 @@ namespace Presentation
 
         private void dgNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgNhanVien.Columns[e.ColumnIndex].Name == "dgcCapNhat")
+            if (e.RowIndex >= 0)
             {
-                frmNhanVienAdd fNVadd = new frmNhanVienAdd(this);
-                fNVadd.txtMaNV.Text = dgNhanVien.CurrentRow.Cells["dgcMaNV"].Value.ToString();
-                fNVadd.txtTenNV.Text = dgNhanVien.CurrentRow.Cells["dgcTenNV"].Value.ToString();
-                fNVadd.txtSoDT.Text = dgNhanVien.CurrentRow.Cells["dgcSoDT"].Value.ToString();
-                ht.BlurBackground(fNVadd);
-            }
-            if (dgNhanVien.Columns[e.ColumnIndex].Name == "dgcXoa")
-            {
-                string ma = dgNhanVien.CurrentRow.Cells["dgcMaNV"].Value.ToString();
-
-                if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa khách hàng này không?") == DialogResult.Yes)
+                if (dgNhanVien.Columns[e.ColumnIndex].Name == "dgcCapNhat")
                 {
-                    bll_nv.Xoanhanvien(ma);
-                    Hienthidulieu();
+                    string ma = dgNhanVien.CurrentRow.Cells["dgcMaNV"].Value.ToString();
+                    string ten = dgNhanVien.CurrentRow.Cells["dgcTenNV"].Value.ToString();
+                    string sdt = dgNhanVien.CurrentRow.Cells["dgcSoDT"].Value.ToString();
+
+                    // Gọi form cập nhật và truyền dữ liệu vào
+                    frmNhanVienAdd fNVadd = new frmNhanVienAdd(this, true, ma, ten, sdt); // true = isEdit
+                    ht.BlurBackground(fNVadd);
+                }
+
+                if (dgNhanVien.Columns[e.ColumnIndex].Name == "dgcXoa")
+                {
+                    string ma = dgNhanVien.CurrentRow.Cells["dgcMaNV"].Value.ToString();
+
+                    if (bll_nv.KiemTraTaiKhoanAdmin(ma))
+                    {
+                        MessageBox.Show("Tài khoản nhân viên có quyền admin không thể bị xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa khách hàng này không?") == DialogResult.Yes)
+                    {
+                        bll_nv.Xoanhanvien(ma);
+                        Hienthidulieu();
+                    }
                 }
             }
         }
+
     }
 }

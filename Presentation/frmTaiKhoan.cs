@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace Presentation
 {
@@ -55,20 +56,27 @@ namespace Presentation
         {
             if (dgTaiKhoan.Columns[e.ColumnIndex].Name == "dgcCapNhat")
             {
-                // Khi nhấn vào nút cập nhật
-                frmTaiKhoanAdd fTKadd = new frmTaiKhoanAdd(this);
+                //// Khi nhấn vào nút cập nhật
+                //frmTaiKhoanAdd fTKadd = new frmTaiKhoanAdd(this);
 
                 // Gán dữ liệu từ DataGridView sang form cập nhật
-                fTKadd.txtMaTaiK.Text = dgTaiKhoan.CurrentRow.Cells["dgcMaTaiK"].Value.ToString();
-                fTKadd.txtTenTK.Text = dgTaiKhoan.CurrentRow.Cells["dgcTenTK"].Value.ToString();
-                fTKadd.txtMatK.Text = dgTaiKhoan.CurrentRow.Cells["dgcMatK"].Value.ToString();
-                fTKadd.cboRole.Text = dgTaiKhoan.CurrentRow.Cells["dgcRole"].Value.ToString();
-                fTKadd.cboTenNV.SelectedValue = dgTaiKhoan.CurrentRow.Cells["dgcMaNV"].Value.ToString(); // Gán mã nhân viên
-
-                ht.BlurBackground(fTKadd); // Mở form cập nhật
+                string matk = dgTaiKhoan.CurrentRow.Cells["dgcMaTaiK"].Value.ToString();
+                string tentk = dgTaiKhoan.CurrentRow.Cells["dgcTenTK"].Value.ToString();
+                string matkhau = dgTaiKhoan.CurrentRow.Cells["dgcMatK"].Value.ToString();
+                string role = dgTaiKhoan.CurrentRow.Cells["dgcRole"].Value.ToString();
+                string manv = dgTaiKhoan.CurrentRow.Cells["dgcMaNV"].Value.ToString(); // Gán mã nhân viên
+                                                                                       // Gọi form cập nhật và truyền dữ liệu vào
+                frmTaiKhoanAdd frmTKAdd = new frmTaiKhoanAdd(this, true, matk, tentk, matkhau, role, manv); // true = isEdit
+                ht.BlurBackground(frmTKAdd); // Mở form cập nhật
             }
             if (dgTaiKhoan.Columns[e.ColumnIndex].Name == "dgcXoa")
             {
+                string selectedRole = dgTaiKhoan.CurrentRow.Cells["dgcRole"].Value.ToString();
+                if (selectedRole == "Admin")
+                {
+                    MessageBox.Show("Tài khoản admin không thể bị xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 // Khi nhấn vào nút xóa
                 string ma = dgTaiKhoan.CurrentRow.Cells["dgcMaTaiK"].Value.ToString();
                 

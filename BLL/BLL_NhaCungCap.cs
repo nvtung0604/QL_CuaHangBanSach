@@ -36,5 +36,9 @@ namespace BLL
         {
             return dal_ncc.KiemTraMaNhaCungCap(MaNCC);
         }
+        public string ThemNhaCungCapVaLayMa(DTO_NhaCungCap ncc)
+        {
+            return dal_ncc.ThemNhaCungCapVaLayMa(ncc);
+        }
     }
 }

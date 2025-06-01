@@ -49,6 +49,12 @@ namespace BLL
             // Xóa thể loại
             dal_tl.XoaTheLoai(mtl);
 
+
         }
+        public string ThemTheLoaiVaLayMa(DTO_TheLoai tl)
+        {
+            return dal_tl.ThemTheLoaiVaLayMa(tl);
+        }
+
     }
 }

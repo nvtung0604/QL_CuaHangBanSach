@@ -29,7 +29,8 @@ namespace Presentation
         {
             // Mở form thêm sách
             frmSachAdd fSachAdd = new frmSachAdd(this);
-            ht.BlurBackground(fSachAdd);
+            //ht.BlurBackground(fSachAdd);
+            fSachAdd.ShowDialog();
         }
 
         private void frmSach_Load(object sender, EventArgs e)
@@ -68,37 +69,41 @@ namespace Presentation
         {
             if (dgSach.Columns[e.ColumnIndex].Name == "dgcCapNhat")
             {
-                // Cập nhật thông tin sách khi nhấn nút Cập nhật
-                frmSachAdd fSachAdd = new frmSachAdd(this);
-                fSachAdd.Laydanhsachtheloai();
-                fSachAdd.Laydanhsachmancc();
-                fSachAdd.txtMaS.Text = dgSach.CurrentRow.Cells["dgcMaS"].Value.ToString();
-                fSachAdd.txtTenS.Text = dgSach.CurrentRow.Cells["dgcTenS"].Value.ToString();
-                fSachAdd.txtTacG.Text = dgSach.CurrentRow.Cells["dgcTacG"].Value.ToString();
-                fSachAdd.cboTheL.Text = dgSach.CurrentRow.Cells["dgcTheL"].Value.ToString();
-                fSachAdd.txtGiaB.Text = dgSach.CurrentRow.Cells["dgcGiaB"].Value.ToString();
-                fSachAdd.txtSoLT.Text = dgSach.CurrentRow.Cells["dgcSoLT"].Value.ToString();
-                fSachAdd.txtNhaXB.Text = dgSach.CurrentRow.Cells["dgcNhaXB"].Value.ToString();
-                fSachAdd.cboMaNCC.Text = dgSach.CurrentRow.Cells["dgcTenNCC"].Value.ToString();
-                fSachAdd.txtNamXB.Text = dgSach.CurrentRow.Cells["dgcNamXB"].Value.ToString();
+                // Lấy dữ liệu từ dòng hiện tại trước
+                string ma = dgSach.CurrentRow.Cells["dgcMaS"].Value.ToString();
+                string ten = dgSach.CurrentRow.Cells["dgcTenS"].Value.ToString();
+                string tacgia = dgSach.CurrentRow.Cells["dgcTacG"].Value.ToString();
+                string tl = dgSach.CurrentRow.Cells["dgcTheL"].Value.ToString();
+                string giaban = dgSach.CurrentRow.Cells["dgcGiaB"].Value.ToString();
+                string soluong = dgSach.CurrentRow.Cells["dgcSoLT"].Value.ToString();
+                string nxb = dgSach.CurrentRow.Cells["dgcNhaXB"].Value.ToString();
+                string ncc = dgSach.CurrentRow.Cells["dgcTenNCC"].Value.ToString();
+                string namxb = dgSach.CurrentRow.Cells["dgcNamXB"].Value.ToString();
 
+                // Tạo 1 instance form với dữ liệu lấy được
+                frmSachAdd faSachAdd = new frmSachAdd(this, true, ma, ten, tacgia, tl, giaban, soluong, nxb, ncc, namxb);
 
-                // Hiển thị hình ảnh nếu có
+                // Gán danh sách thể loại, nhà cung cấp
+                faSachAdd.Laydanhsachtheloai();
+                faSachAdd.Laydanhsachmancc();
+
+                // Lấy dữ liệu ảnh byte[]
                 byte[] imageData = dgSach.CurrentRow.Cells["dgcHinhA"].Value as byte[];
                 if (imageData != null)
                 {
                     using (MemoryStream ms = new MemoryStream(imageData))
                     {
-                        fSachAdd.pcHinhA.Image = Image.FromStream(ms);
-                        fSachAdd.SetImageData(imageData);
+                        faSachAdd.pcHinhA.Image = Image.FromStream(ms);
+                        faSachAdd.SetImageData(imageData); // Hàm của bạn để lưu dữ liệu ảnh (nếu có)
                     }
                 }
 
-                ht.BlurBackground(fSachAdd);
+                // Hiển thị form cập nhật
+                ht.BlurBackground(faSachAdd);
             }
+
             if (dgSach.Columns[e.ColumnIndex].Name == "dgcXoa")
             {
-                // Xóa sách khi nhấn nút Xóa
                 string ma = dgSach.CurrentRow.Cells["dgcMaS"].Value.ToString();
                 if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa sách này không?") == DialogResult.Yes)
                 {
@@ -107,6 +112,7 @@ namespace Presentation
                 }
             }
         }
+
 
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {

@@ -56,7 +56,10 @@ namespace Presentation
                 if (bll_kh.ThemKhachHang(kh) > 0)
                 {
                     ht.ThongBao(this, "Thông báo", "Thêm thông tin khách hàng thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
-                    _fcha.Hienthidulieu();
+                    if (_fcha != null)
+                    {
+                        _fcha.Hienthidulieu();
+                    }
                 }
                 else
                 {

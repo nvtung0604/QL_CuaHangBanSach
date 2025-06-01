@@ -42,8 +42,6 @@
             this.cboRole = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTenNV = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtMaTaiK = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ppcNhanVien)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -67,7 +65,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(93, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 28);
+            this.label3.Size = new System.Drawing.Size(84, 21);
             this.label3.TabIndex = 1;
             this.label3.Text = "Tài khoản";
             // 
@@ -95,7 +93,7 @@
             this.txtMatK.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMatK.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtMatK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMatK.Location = new System.Drawing.Point(259, 179);
+            this.txtMatK.Location = new System.Drawing.Point(251, 124);
             this.txtMatK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatK.Name = "txtMatK";
             this.txtMatK.PlaceholderText = "";
@@ -106,9 +104,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 158);
+            this.label2.Location = new System.Drawing.Point(248, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 23);
+            this.label2.Size = new System.Drawing.Size(68, 19);
             this.label2.TabIndex = 13;
             this.label2.Text = "Mật khẩu";
             // 
@@ -123,7 +121,7 @@
             this.txtTenTK.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTenTK.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTenTK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTenTK.Location = new System.Drawing.Point(32, 179);
+            this.txtTenTK.Location = new System.Drawing.Point(24, 124);
             this.txtTenTK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenTK.Name = "txtTenTK";
             this.txtTenTK.PlaceholderText = "";
@@ -134,9 +132,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 158);
+            this.label1.Location = new System.Drawing.Point(21, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 23);
+            this.label1.Size = new System.Drawing.Size(91, 19);
             this.label1.TabIndex = 14;
             this.label1.Text = "Tên tài khoản";
             // 
@@ -147,7 +145,7 @@
             this.guna2Panel2.Controls.Add(this.btnSave);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.guna2Panel2.Location = new System.Drawing.Point(0, 323);
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 289);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(513, 69);
             this.guna2Panel2.TabIndex = 12;
@@ -207,9 +205,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 235);
+            this.label4.Location = new System.Drawing.Point(21, 180);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 23);
+            this.label4.Size = new System.Drawing.Size(49, 19);
             this.label4.TabIndex = 13;
             this.label4.Text = "Vai trò";
             // 
@@ -226,7 +224,7 @@
             this.cboRole.Items.AddRange(new object[] {
             "Admin",
             "Nhân Viên"});
-            this.cboRole.Location = new System.Drawing.Point(32, 262);
+            this.cboRole.Location = new System.Drawing.Point(24, 207);
             this.cboRole.Name = "cboRole";
             this.cboRole.Size = new System.Drawing.Size(200, 36);
             this.cboRole.TabIndex = 3;
@@ -234,9 +232,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(256, 235);
+            this.label5.Location = new System.Drawing.Point(248, 180);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 23);
+            this.label5.Size = new System.Drawing.Size(71, 19);
             this.label5.TabIndex = 13;
             this.label5.Text = "Nhân viên";
             // 
@@ -250,46 +248,16 @@
             this.cboTenNV.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboTenNV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cboTenNV.ItemHeight = 30;
-            this.cboTenNV.Location = new System.Drawing.Point(259, 262);
+            this.cboTenNV.Location = new System.Drawing.Point(251, 207);
             this.cboTenNV.Name = "cboTenNV";
             this.cboTenNV.Size = new System.Drawing.Size(200, 36);
             this.cboTenNV.TabIndex = 4;
-            // 
-            // txtMaTaiK
-            // 
-            this.txtMaTaiK.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMaTaiK.DefaultText = "";
-            this.txtMaTaiK.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMaTaiK.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMaTaiK.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaTaiK.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaTaiK.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaTaiK.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaTaiK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaTaiK.Location = new System.Drawing.Point(31, 106);
-            this.txtMaTaiK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMaTaiK.Name = "txtMaTaiK";
-            this.txtMaTaiK.PlaceholderText = "";
-            this.txtMaTaiK.SelectedText = "";
-            this.txtMaTaiK.Size = new System.Drawing.Size(200, 36);
-            this.txtMaTaiK.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 83);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 23);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Mã tài khoản";
             // 
             // frmTaiKhoanAdd
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(513, 392);
-            this.Controls.Add(this.txtMaTaiK);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(513, 358);
             this.Controls.Add(this.cboTenNV);
             this.Controls.Add(this.cboRole);
             this.Controls.Add(this.label5);
@@ -332,7 +300,5 @@
         public System.Windows.Forms.Label label5;
         public Guna.UI2.WinForms.Guna2ComboBox cboRole;
         public Guna.UI2.WinForms.Guna2ComboBox cboTenNV;
-        public Guna.UI2.WinForms.Guna2TextBox txtMaTaiK;
-        public System.Windows.Forms.Label label6;
     }
 }

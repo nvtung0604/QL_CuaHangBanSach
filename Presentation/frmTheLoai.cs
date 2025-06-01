@@ -67,14 +67,15 @@ namespace Presentation
                 }
 
                 // Mở form cập nhật thể loại
-                frmTheLoaiAdd fTLadd = new frmTheLoaiAdd(this);
+                //frmTheLoaiAdd fTLadd = new frmTheLoaiAdd(this);
 
                 // Truyền dữ liệu từ DataGridView sang các TextBox của form cập nhật
-                fTLadd.txtMaTL.Text = dgTheLoai.CurrentRow.Cells["dgcMaTL"].Value.ToString();
-                fTLadd.txtTenTL.Text = dgTheLoai.CurrentRow.Cells["dgcTenTL"].Value.ToString();
+                string ma = dgTheLoai.CurrentRow.Cells["dgcMaTL"].Value.ToString();
+                string ten = dgTheLoai.CurrentRow.Cells["dgcTenTL"].Value.ToString();
 
+                frmTheLoaiAdd frmTLadd = new frmTheLoaiAdd(this, true, ma, ten);
                 // Làm mờ background và hiển thị form
-                ht.BlurBackground(fTLadd);
+                ht.BlurBackground(frmTLadd);
             }
             // Kiểm tra nếu tên cột là "dgcXoa" (Xóa thể loại)
             if (dgTheLoai.Columns[e.ColumnIndex].Name == "dgcXoa")

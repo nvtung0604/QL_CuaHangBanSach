@@ -33,8 +33,6 @@
             this.ppcNhanVien = new Guna.UI2.WinForms.Guna2PictureBox();
             this.txtTenTL = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMaTL = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
@@ -61,7 +59,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(84, 28);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 21);
+            this.label3.Size = new System.Drawing.Size(88, 28);
             this.label3.TabIndex = 1;
             this.label3.Text = "Thể loại";
             // 
@@ -89,7 +87,8 @@
             this.txtTenTL.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTenTL.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTenTL.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTenTL.Location = new System.Drawing.Point(269, 115);
+            this.txtTenTL.Location = new System.Drawing.Point(31, 128);
+            this.txtTenTL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenTL.Name = "txtTenTL";
             this.txtTenTL.PlaceholderText = "";
             this.txtTenTL.SelectedText = "";
@@ -99,38 +98,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(266, 94);
+            this.label2.Location = new System.Drawing.Point(28, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.Size = new System.Drawing.Size(98, 23);
             this.label2.TabIndex = 5;
             this.label2.Text = "Tên thể loại";
-            // 
-            // txtMaTL
-            // 
-            this.txtMaTL.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMaTL.DefaultText = "";
-            this.txtMaTL.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMaTL.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMaTL.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaTL.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaTL.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaTL.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaTL.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaTL.Location = new System.Drawing.Point(42, 115);
-            this.txtMaTL.Name = "txtMaTL";
-            this.txtMaTL.PlaceholderText = "";
-            this.txtMaTL.SelectedText = "";
-            this.txtMaTL.Size = new System.Drawing.Size(200, 36);
-            this.txtMaTL.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Mã thể loại";
             // 
             // guna2Panel2
             // 
@@ -139,7 +111,7 @@
             this.guna2Panel2.Controls.Add(this.btnSave);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.guna2Panel2.Location = new System.Drawing.Point(0, 271);
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 242);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(519, 69);
             this.guna2Panel2.TabIndex = 4;
@@ -200,12 +172,10 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(519, 340);
+            this.ClientSize = new System.Drawing.Size(519, 311);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.txtTenTL);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtMaTL);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2Panel2);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -229,8 +199,6 @@
         public Guna.UI2.WinForms.Guna2PictureBox ppcNhanVien;
         public Guna.UI2.WinForms.Guna2TextBox txtTenTL;
         public System.Windows.Forms.Label label2;
-        public Guna.UI2.WinForms.Guna2TextBox txtMaTL;
-        public System.Windows.Forms.Label label1;
         public Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         public Guna.UI2.WinForms.Guna2Button btnClose;
         public Guna.UI2.WinForms.Guna2Button btnSave;

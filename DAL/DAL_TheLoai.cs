@@ -17,7 +17,7 @@ namespace DAL
         // Hiển thị dữ liệu thể loại
         public DataTable HienThiDuLieu()
         {
-            string query = "SELECT * FROM TheLoai";
+            string query = "SELECT * FROM TheLoai where isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
 
@@ -44,7 +44,7 @@ namespace DAL
         }
         public int XoaTheLoai(string MaTheLoai)
         {
-            string query = "DELETE FROM TheLoai WHERE MaTheLoai = @MaTheLoai";
+            string query = "UPDATE TheLoai SET isDelete = 1 WHERE MaTheLoai = @MaTheLoai";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaTheLoai", MaTheLoai)
@@ -55,7 +55,7 @@ namespace DAL
         // thao tác tìm kiếm
         public DataTable TimKiemTheLoai(string tukhoa)
         {
-            string query = "SELECT * FROM TheLoai WHERE MaTheLoai LIKE @Tukhoa OR TenTheLoai LIKE @Tukhoa";
+            string query = "SELECT * FROM TheLoai WHERE MaTheLoai LIKE @Tukhoa OR TenTheLoai LIKE @Tukhoa AND isDelete = 0";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")
@@ -85,6 +85,27 @@ namespace DAL
                 new SqlParameter("@MaTheLoai", mtl)
             };
             return kn.ThaoTacDuLieu(query, parameters);
+        }
+        public string ThemTheLoaiVaLayMa(DTO_TheLoai tl)
+        {
+            using (SqlConnection conn = kn.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_ThemTheLoaiTraMaTL", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TenTheLoai", tl.TenTheLoai);
+
+                    SqlParameter maNVOut = new SqlParameter("@MaTLMoi", SqlDbType.VarChar, 20)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(maNVOut);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return maNVOut.Value.ToString();
+                }
+            }
         }
     }
 }

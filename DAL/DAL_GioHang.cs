@@ -26,7 +26,7 @@ namespace DAL
                             FROM HoaDon
                             INNER JOIN KhachHang ON HoaDon.SDT = KhachHang.SDT
                             INNER JOIN NhanVien ON HoaDon.MaNV = NhanVien.MaNV
-                            WHERE HoaDon.TongTien > 0 AND HoaDon.TrangThai = N'Chưa thanh toán'";
+                            WHERE HoaDon.TongTien > 0 AND HoaDon.TrangThai = N'Chưa thanh toán' AND HoaDon.isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
      
@@ -181,7 +181,7 @@ namespace DAL
         }
         public int XoaHoaDon(string MaGioHang)
         {
-            string query = "DELETE FROM HoaDon_ChiTiet WHERE MaGioHang = @MaGioHang;\r\nDELETE FROM HoaDon WHERE MaGioHang = @MaGioHang;";
+            string query = "UPDATE HoaDon_ChiTiet SET isDelete = 1 WHERE MaGioHang = @MaGioHang;\r\nUPDATE HoaDon SET isDelete = 1 WHERE MaGioHang = @MaGioHang;";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaGioHang", MaGioHang),

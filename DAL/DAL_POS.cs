@@ -25,12 +25,14 @@ namespace DAL
                     s.SoLuongTon
                 FROM Sach s
                 JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai
+                where s.isDelete = 0
+    
             ";
             return kn.HienThiDuLieu(query);
         }
         public DataTable LayDanhSachTheLoai()
         {
-            string query = "SELECT TenTheLoai FROM TheLoai";
+            string query = "SELECT TenTheLoai FROM TheLoai WHERE isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
         public DataTable LayDanhSachTheoMa(string MaSach)

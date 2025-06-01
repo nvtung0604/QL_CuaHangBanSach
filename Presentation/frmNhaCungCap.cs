@@ -26,10 +26,12 @@ namespace Presentation
         {
             if (dgNhaCungCap.Columns[e.ColumnIndex].Name == "dgcCapNhat")
             {
-                frmNhaCungCapAdd fNCCadd = new frmNhaCungCapAdd(this);
-                fNCCadd.txtMaNCC.Text = dgNhaCungCap.CurrentRow.Cells["dgcMaNCC"].Value.ToString();
-                fNCCadd.txtTenNCC.Text = dgNhaCungCap.CurrentRow.Cells["dgcTenNCC"].Value.ToString();
-                fNCCadd.txtSoDT.Text = dgNhaCungCap.CurrentRow.Cells["dgcSoDT"].Value.ToString();
+                string ma = dgNhaCungCap.CurrentRow.Cells["dgcMaNCC"].Value.ToString();
+                string ten = dgNhaCungCap.CurrentRow.Cells["dgcTenNCC"].Value.ToString();
+                string sdt = dgNhaCungCap.CurrentRow.Cells["dgcSoDT"].Value.ToString();
+
+                // Gọi form cập nhật và truyền dữ liệu vào
+                frmNhaCungCapAdd fNCCadd = new frmNhaCungCapAdd(this, true, ma, ten, sdt); // true = isEdit
                 ht.BlurBackground(fNCCadd);
             }
             if (dgNhaCungCap.Columns[e.ColumnIndex].Name == "dgcXoa")

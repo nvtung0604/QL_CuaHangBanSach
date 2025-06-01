@@ -33,9 +33,18 @@ namespace BLL
         {
             return dal_nv.TimKiemNhanVien(tukhoa);
         }
-        public bool Kiemtramanhanvien(string MaKH)
+        public bool Kiemtramanhanvien(string MaNV)
         {
-            return dal_nv.KiemTraMaNhanVien(MaKH);
+            return dal_nv.KiemTraMaNhanVien(MaNV);
+        }
+        public bool KiemTraTaiKhoanAdmin(string MaNV)
+        {
+            return dal_nv.KiemTraTaiKhoanAdmin(MaNV);
+        }
+
+        public string ThemNhanVienVaLayMa(DTO_NhanVien nv)
+        {
+            return dal_nv.ThemNhanVienVaLayMa(nv);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Presentation
             }
             if (dgKhachHang.Columns[e.ColumnIndex].Name == "dgcXoa")
             {
-                string ma = dgKhachHang.CurrentRow.Cells["dgcMaKH"].Value.ToString();
+                string ma = dgKhachHang.CurrentRow.Cells["dgcSoDT"].Value.ToString();
                 
                 if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa khách hàng này không?") == DialogResult.Yes)
                 {

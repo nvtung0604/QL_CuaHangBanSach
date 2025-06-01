@@ -14,7 +14,7 @@ namespace DAL
         DBKetNoi kn = new DBKetNoi();
         public DataTable KiemTraDangNhap(DTO_DangNhap dto_dn)
         {
-            string query = "SELECT * FROM TaiKhoan WHERE TenTaiKhoan = @TenTaiKhoan AND MatKhau = @MatKhau";
+            string query = "SELECT * FROM TaiKhoan WHERE TenTaiKhoan = @TenTaiKhoan AND MatKhau = @MatKhau AND isDelete = 0";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@TenTaiKhoan", dto_dn.TenTaiKhoan),
@@ -24,15 +24,24 @@ namespace DAL
         }
         public DataTable HienThiDuLieu()
         {
-            string query = "select tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV, nv.MaNV from TaiKhoan tk join NhanVien nv ON tk.MaNV = nv.MaNV";
+            string query = @"
+                SELECT 
+                    tk.MaTaiKhoan, 
+                    tk.TenTaiKhoan, 
+                    tk.MatKhau, 
+                    tk.Role, 
+                    nv.TenNV, 
+                    nv.MaNV 
+                FROM TaiKhoan tk 
+                JOIN NhanVien nv ON tk.MaNV = nv.MaNV 
+                WHERE tk.isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
         public int ThemTaiKhoan(DTO_DangNhap dn)
         {
-            string query = "INSERT INTO TaiKhoan (MaTaiKhoan, TenTaiKhoan, MatKhau, Role, MaNV) VALUES (@MaTaiKhoan, @TenTaiKhoan, @MatKhau, @Role, @MaNV)";
+            string query = "INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, Role, MaNV) VALUES (@TenTaiKhoan, @MatKhau, @Role, @MaNV)";
             SqlParameter[] parameters =
             {
-                new SqlParameter("@MaTaiKhoan", dn.MaTaiKhoan),
                 new SqlParameter("@TenTaiKhoan", dn.TenTaiKhoan),
                 new SqlParameter("@MatKhau", dn.MatKhau),
                 new SqlParameter("@Role", dn.Role),
@@ -64,7 +73,7 @@ namespace DAL
         }
         public int XoaTaiKhoan(string MaTaiKhoan)
         {
-            string query = "DELETE FROM TaiKhoan WHERE MaTaiKhoan = @MaTaiKhoan";
+            string query = "UPDATE TaiKhoan SET isDelete = 1 WHERE MaTaiKhoan = @MaTaiKhoan";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaTaiKhoan", MaTaiKhoan)
@@ -84,7 +93,7 @@ namespace DAL
         }
         public DataTable LoadMaNV()
         {
-            string query = "select * from NhanVien ";
+            string query = "select * from NhanVien where isDelete = 0 ";
             return kn.HienThiDuLieu(query);
         }
 
@@ -139,6 +148,30 @@ namespace DAL
             string query = $"SELECT COUNT(*) FROM TaiKhoan WHERE TenTaiKhoan = '{tenTaiKhoan}'";
             int count = kn.ThucThiScalarSoNguyen(query); // Hàm thực thi truy vấn trả về số lượng
             return count > 0; // Trả về true nếu tên tài khoản đã tồn tại
+        }
+        public string ThemTaiKHoanVaLayMa(DTO_DangNhap dn)
+        {
+            using (SqlConnection conn = kn.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_ThemTaiKhoanTraMaTK", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TenTaiKhoan", dn.TenTaiKhoan);
+                    cmd.Parameters.AddWithValue("@MatKhau", dn.MatKhau);
+                    cmd.Parameters.AddWithValue("@Role", dn.Role);
+                    cmd.Parameters.AddWithValue("@MaNV", dn.MaNV);
+
+                    SqlParameter maNVOut = new SqlParameter("@MaNVMoi", SqlDbType.VarChar, 20)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(maNVOut);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return maNVOut.Value.ToString();
+                }
+            }
         }
 
     }

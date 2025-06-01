@@ -14,19 +14,36 @@ namespace Presentation
 {
     public partial class frmNhanVienAdd : Form
     {
-        private frmNhanVien _fcha;
+        
         BLL_NhanVien bll_nv = new BLL_NhanVien();
         Hopthoai ht = new Hopthoai();
+        private frmNhanVien _fcha;
+        private bool isEdit = false;
+        private string maNV = "";
+
+
+
+        // Constructor cho thêm
         public frmNhanVienAdd(frmNhanVien fcha)
         {
             InitializeComponent();
             _fcha = fcha;
         }
+
+        // Constructor cho cập nhật
+        public frmNhanVienAdd(frmNhanVien fcha, bool isEdit, string ma, string ten, string sdt)
+            : this(fcha)
+        {
+            this.isEdit = isEdit;
+            this.maNV = ma;
+            txtTenNV.Text = ten;
+            txtSoDT.Text = sdt;
+        }
         private DTO_NhanVien Laythongtintuform()
         {
             return new DTO_NhanVien
             {
-                MaNV = txtMaNV.Text,
+                MaNV = maNV,
                 TenNV = txtTenNV.Text,
                 SDT = txtSoDT.Text
             };
@@ -35,12 +52,14 @@ namespace Presentation
         private void btnSave_Click(object sender, EventArgs e)
         {
             DTO_NhanVien nv = Laythongtintuform();
-            if (bll_nv.Kiemtramanhanvien(nv.MaNV))
+
+            if (isEdit)
             {
+                // Cập nhật
                 if (bll_nv.Capnhatnhanvien(nv) > 0)
                 {
                     ht.ThongBao(this, "Thông báo", "Cập nhật thông tin nhân viên thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
-                    _fcha.Hienthidulieu();
+                    _fcha?.Hienthidulieu();
                 }
                 else
                 {
@@ -49,10 +68,12 @@ namespace Presentation
             }
             else
             {
-                if (bll_nv.Themnhanvien(nv) > 0)
+                // Thêm mới
+                string manv = bll_nv.ThemNhanVienVaLayMa(nv);
+                if (!string.IsNullOrEmpty(manv))
                 {
-                    ht.ThongBao(this, "Thông báo", "Thêm thông tin nhân viên thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
-                    _fcha.Hienthidulieu();
+                    ht.ThongBao(this, "Thông báo", $"Thêm nhân viên thành công! Mã NV: {manv}", Guna.UI2.WinForms.MessageDialogIcon.Information);
+                    _fcha?.Hienthidulieu();
                 }
                 else
                 {
@@ -60,6 +81,7 @@ namespace Presentation
                 }
             }
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

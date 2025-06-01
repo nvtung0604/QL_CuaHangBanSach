@@ -60,5 +60,10 @@ namespace BLL
         {
             return dn.TimKiemTaiKhoan(tukhoa);
         }
+        public string ThemTaiKhoanVaLayMa(DTO_DangNhap dto_dn)
+        {
+            return dn.ThemTaiKHoanVaLayMa(dto_dn);
+        }
     }
+
 }

@@ -16,7 +16,7 @@ namespace DAL
         // Hiển thị dữ liệu khách hàng
         public DataTable HienThiDuLieuKhachHang()
         {
-            string query = "SELECT * FROM KhachHang";
+            string query = "SELECT * FROM KhachHang WHERE isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
 
@@ -43,7 +43,7 @@ namespace DAL
         }
         public int XoaKhachHang(string SDT)
         {
-            string query = "DELETE FROM KhachHang WHERE SDT = @SDT";
+            string query = "UPDATE KhachHang SET isDelete = 1 WHERE SDT = @SDT";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@SDT", SDT)
@@ -54,7 +54,8 @@ namespace DAL
         // thao tác tìm kiếm
         public DataTable TimKiemKhachHang(string tukhoa)
         {
-            string query = "SELECT * FROM KhachHang WHERE TenKH LIKE @Tukhoa OR SDT LIKE @Tukhoa";           
+            string query = "SELECT * FROM KhachHang WHERE (TenKH LIKE @Tukhoa OR SDT LIKE @Tukhoa) AND isDelete = 0";
+
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")

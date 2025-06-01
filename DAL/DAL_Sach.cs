@@ -19,19 +19,18 @@ namespace DAL
             s.MaNCC, n.TenNCC, s.HinhAnh
             FROM Sach s
             JOIN NhaCungCap n ON s.MaNCC = n.MaNCC
-            JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai";
+            JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai where s.isDelete = 0";
             return kn.HienThiDuLieu(query);
         }
 
         // Thêm sách
         public int ThemSach(DTO_Sach s)
         {
-            string query = "INSERT INTO Sach(MaSach, TenSach, TacGia, MaTheLoai, GiaBan, SoLuongTon, NhaXuatBan, NamXuatBan, MaNCC, HinhAnh) " +
-                           "VALUES(@MaSach, @TenSach, @TacGia, @MaTheLoai, @GiaBan, @SoLuongTon, @NhaXuatBan, @NamXuatBan, @MaNCC, @HinhAnh)";
+            string query = "INSERT INTO Sach(TenSach, TacGia, MaTheLoai, GiaBan, SoLuongTon, NhaXuatBan, NamXuatBan, MaNCC, HinhAnh) " +
+                           "VALUES(@TenSach, @TacGia, @MaTheLoai, @GiaBan, @SoLuongTon, @NhaXuatBan, @NamXuatBan, @MaNCC, @HinhAnh)";
 
             SqlParameter[] parameters =
             {
-                new SqlParameter("@MaSach", s.MaSach),
                 new SqlParameter("@TenSach", s.TenSach),
                 new SqlParameter("@TacGia", s.TacGia),
                 new SqlParameter("@MaTheLoai", s.MaTheLoai),
@@ -73,7 +72,7 @@ namespace DAL
         // Xóa sách
         public int XoaSach(string MaSach)
         {
-            string query = "DELETE FROM Sach WHERE MaSach = @MaSach";
+            string query = "UPDATE Sach SET isDelete = 1 WHERE MaSach = @MaSach";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaSach", MaSach)
@@ -123,5 +122,40 @@ namespace DAL
             
             return dal_ncc.HienThiDuLieuNhaCungCap();
         }
+        public string ThemSachVaLayMa(DTO_Sach sach)
+        {
+            using (SqlConnection conn = kn.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_ThemSachTraMaSach", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Các tham số đầu vào
+                    cmd.Parameters.AddWithValue("@TenSach", sach.TenSach);
+                    cmd.Parameters.AddWithValue("@TacGia", sach.TacGia);
+                    cmd.Parameters.AddWithValue("@MaTheLoai", sach.MaTheLoai);
+                   
+                    cmd.Parameters.AddWithValue("@MaNCC", sach.MaNCC);
+                    cmd.Parameters.AddWithValue("@GiaBan", sach.GiaBan);
+                    cmd.Parameters.AddWithValue("@SoLuongTon", sach.SoLuongTon);
+                    cmd.Parameters.AddWithValue("@NhaXuatBan", sach.NhaXuatBan);
+                    cmd.Parameters.AddWithValue("@NamXuatBan", sach.NamXuatBan);
+                    cmd.Parameters.AddWithValue("@HinhAnh", sach.HinhAnh); // Hình ảnh dạng byte[]
+
+                    // Tham số đầu ra
+                    SqlParameter maSachOut = new SqlParameter("@MaSachMoi", SqlDbType.VarChar, 20)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(maSachOut);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    return maSachOut.Value.ToString();
+                }
+            }
+        }
+
     }
 }

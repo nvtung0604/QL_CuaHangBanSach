@@ -19,27 +19,49 @@ namespace Presentation
         Hopthoai ht = new Hopthoai();
         private frmSach _fcha;
         private byte[] imageData = null;
+        private bool isEdit = false;
+        private string masach = "";
         public frmSachAdd(frmSach fcha)
         {
             InitializeComponent();
             _fcha = fcha;
         }
+        public frmSachAdd(frmSach fcha, bool isEdit, string ma, string ten, string tacgia, string tl, string giaban, string sl, string nxb, string ncc, string namxb) : this(fcha)
+        {
+            this.isEdit = isEdit;
+            this.masach = ma;
+
+            Laydanhsachtheloai();     
+            Laydanhsachmancc();      
+
+            txtTenS.Text = ten;
+            txtTacG.Text = tacgia;
+            cboTheL.SelectedValue = tl;
+            txtGiaB.Text = giaban;
+            txtSoLT.Text = sl;
+            txtNhaXB.Text = nxb;
+            cboMaNCC.SelectedValue = ncc;
+            txtNamXB.Text = namxb;
+        }
+
+
         private DTO_Sach Laythongtintuform()
         {
             return new DTO_Sach
             {
-                MaSach = txtMaS.Text,
+                MaSach = masach,
                 TenSach = txtTenS.Text,
                 TacGia = txtTacG.Text,
-                MaTheLoai = cboTheL.SelectedValue?.ToString(),
-                GiaBan = decimal.TryParse(txtGiaB.Text, out decimal gia) ? gia : 0,
-                SoLuongTon = int.TryParse(txtSoLT.Text, out int sl) ? sl : 0,
+                MaTheLoai = cboTheL.SelectedValue.ToString(),
+                GiaBan = Convert.ToDecimal(txtGiaB.Text),
+                SoLuongTon = Convert.ToInt32(txtSoLT.Text),
                 NhaXuatBan = txtNhaXB.Text,
-                NamXuatBan = int.TryParse(txtNamXB.Text, out int nam) ? nam : 0,
-                MaNCC = cboMaNCC.SelectedValue?.ToString(),
+                NamXuatBan = Convert.ToInt32(txtNamXB.Text),
+                MaNCC = cboMaNCC.SelectedValue.ToString(),
                 HinhAnh = imageData
             };
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -67,7 +89,7 @@ namespace Presentation
         {
             Laydanhsachtheloai();
             Laydanhsachmancc();
-            if (string.IsNullOrEmpty(txtMaS.Text))
+            if (string.IsNullOrEmpty(masach))
             {
                 cboTheL.SelectedIndex = -1;  // Đặt ô về trạng thái trống
                 cboMaNCC.SelectedIndex = -1;  // Đặt ô về trạng thái trống
@@ -90,7 +112,7 @@ namespace Presentation
             try
             {
                 // Check for missing data
-                if (string.IsNullOrWhiteSpace(txtMaS.Text) ||
+                if (
                     string.IsNullOrWhiteSpace(txtTenS.Text) ||
                     string.IsNullOrWhiteSpace(txtTacG.Text) ||
                     string.IsNullOrWhiteSpace(cboTheL.Text) ||
@@ -99,10 +121,12 @@ namespace Presentation
                     string.IsNullOrWhiteSpace(txtNhaXB.Text) ||
                     string.IsNullOrWhiteSpace(txtNamXB.Text) ||
                     string.IsNullOrWhiteSpace(cboMaNCC.Text) || imageData == null)
+                    
                 {
                     ht.ThongBao(this, "Thông báo", "Vui lòng kiểm tra lại, có trường dữ liệu bị thiếu!", Guna.UI2.WinForms.MessageDialogIcon.Warning);
                     return;
                 }
+                MessageBox.Show(cboTheL.Text);
 
                 // Get book information
                 DTO_Sach sach = Laythongtintuform();
@@ -114,7 +138,7 @@ namespace Presentation
                     return;
                 }
 
-                if (bll_s.KiemTraMaSach(sach.MaSach))
+                if (isEdit)
                 {
                     // Update existing book
                     if (bll_s.CapNhatSach(sach) > 0)
@@ -129,8 +153,9 @@ namespace Presentation
                 }
                 else
                 {
+                    string masach = bll_s.ThemSachVaLayMa(sach);
                     // Add new book
-                    if (bll_s.ThemSach(sach) > 0)
+                    if (!string.IsNullOrEmpty(masach))
                     {
                         ht.ThongBao(this, "Thông báo", "Thêm sách thành công!", Guna.UI2.WinForms.MessageDialogIcon.Information);
                         _fcha.Hienthidulieu();

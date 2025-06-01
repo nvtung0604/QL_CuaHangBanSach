@@ -38,8 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtGiaB = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtSoDT = new System.Windows.Forms.Label();
-            this.txtMaS = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTacG = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -214,34 +212,6 @@
             this.txtSoDT.Size = new System.Drawing.Size(69, 23);
             this.txtSoDT.TabIndex = 6;
             this.txtSoDT.Text = "Giá bán";
-            // 
-            // txtMaS
-            // 
-            this.txtMaS.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMaS.DefaultText = "";
-            this.txtMaS.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMaS.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMaS.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaS.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaS.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaS.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaS.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaS.Location = new System.Drawing.Point(42, 115);
-            this.txtMaS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMaS.Name = "txtMaS";
-            this.txtMaS.PlaceholderText = "";
-            this.txtMaS.SelectedText = "";
-            this.txtMaS.Size = new System.Drawing.Size(200, 36);
-            this.txtMaS.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 23);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Mã sách";
             // 
             // label4
             // 
@@ -449,8 +419,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSoDT);
-            this.Controls.Add(this.txtMaS);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSachAdd";
@@ -479,8 +447,6 @@
         public System.Windows.Forms.Label label2;
         public Guna.UI2.WinForms.Guna2TextBox txtGiaB;
         public System.Windows.Forms.Label txtSoDT;
-        public Guna.UI2.WinForms.Guna2TextBox txtMaS;
-        public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label4;
         public Guna.UI2.WinForms.Guna2TextBox txtTacG;
         public System.Windows.Forms.Label label5;

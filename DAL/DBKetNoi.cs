@@ -120,6 +120,12 @@ namespace DAL
 
             return result;
         }
+        public SqlConnection GetConnection()
+        {
+            SqlConnection conn = new SqlConnection(chuoiketnoi);
+            return conn;
+        }
+
 
     }
 }

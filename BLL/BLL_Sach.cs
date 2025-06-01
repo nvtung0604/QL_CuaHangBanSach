@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,6 +46,10 @@ namespace BLL
         public DataTable Laydanhsachmancc()
         {
             return dal_s.LayDanhSachMaNCC();
+        }
+        public string ThemSachVaLayMa(DTO_Sach s)
+        {
+            return dal_s.ThemSachVaLayMa(s);
         }
     }
 }
