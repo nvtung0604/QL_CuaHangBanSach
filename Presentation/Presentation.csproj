@@ -146,12 +146,6 @@
     <Compile Include="frmGioHang.Designer.cs">
       <DependentUpon>frmGioHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGioHangChiTiet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGioHangChiTiet.Designer.cs">
-      <DependentUpon>frmGioHangChiTiet.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,9 +253,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGioHang.resx">
       <DependentUpon>frmGioHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGioHangChiTiet.resx">
-      <DependentUpon>frmGioHangChiTiet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>

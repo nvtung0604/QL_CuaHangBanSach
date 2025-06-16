@@ -32,16 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgGioHang = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnHoaDonThanhToan = new Guna.UI2.WinForms.Guna2Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ppcNhanVien = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.dgcMaGH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcTrangT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,10 +41,20 @@
             this.dgcCapNhat = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgcXoa = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgcInHD = new System.Windows.Forms.DataGridViewImageColumn();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnHoaDonThanhToan = new Guna.UI2.WinForms.Guna2Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ppcNhanVien = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgGioHang)).BeginInit();
             this.guna2Panel1.SuspendLayout();
-            this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ppcNhanVien)).BeginInit();
+            this.guna2Panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgGioHang
@@ -123,129 +123,6 @@
             this.dgGioHang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgGioHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgGioHang_CellClick);
             this.dgGioHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgGioHang_CellContentClick);
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(111)))), ((int)(((byte)(81)))));
-            this.guna2Panel1.Controls.Add(this.btnHoaDonThanhToan);
-            this.guna2Panel1.Controls.Add(this.label3);
-            this.guna2Panel1.Controls.Add(this.ppcNhanVien);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(775, 73);
-            this.guna2Panel1.TabIndex = 11;
-            // 
-            // btnHoaDonThanhToan
-            // 
-            this.btnHoaDonThanhToan.BorderRadius = 5;
-            this.btnHoaDonThanhToan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnHoaDonThanhToan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnHoaDonThanhToan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnHoaDonThanhToan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHoaDonThanhToan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(170)))), ((int)(((byte)(41)))));
-            this.btnHoaDonThanhToan.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnHoaDonThanhToan.ForeColor = System.Drawing.Color.White;
-            this.btnHoaDonThanhToan.Location = new System.Drawing.Point(582, 12);
-            this.btnHoaDonThanhToan.Name = "btnHoaDonThanhToan";
-            this.btnHoaDonThanhToan.Size = new System.Drawing.Size(181, 45);
-            this.btnHoaDonThanhToan.TabIndex = 2;
-            this.btnHoaDonThanhToan.Text = "Xem hóa đơn đã thanh toán";
-            this.btnHoaDonThanhToan.Click += new System.EventHandler(this.btnHoaDonThanhToan_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(84, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 28);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Giỏ Hàng";
-            // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.guna2Panel2.Controls.Add(this.btnClose);
-            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.guna2Panel2.Location = new System.Drawing.Point(0, 448);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(775, 69);
-            this.guna2Panel2.TabIndex = 12;
-            // 
-            // printDocument1
-            // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::Presentation.Properties.Resources.icon_pencil;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 94;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = global::Presentation.Properties.Resources.icon_print;
-            this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn2.MinimumWidth = 6;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            this.dataGridViewImageColumn2.Width = 94;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "";
-            this.dataGridViewImageColumn3.Image = global::Presentation.Properties.Resources.icon_print;
-            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn3.MinimumWidth = 6;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.Width = 86;
-            // 
-            // ppcNhanVien
-            // 
-            this.ppcNhanVien.BackColor = System.Drawing.Color.Transparent;
-            this.ppcNhanVien.Image = global::Presentation.Properties.Resources.icon_theloai;
-            this.ppcNhanVien.ImageRotate = 0F;
-            this.ppcNhanVien.Location = new System.Drawing.Point(12, 8);
-            this.ppcNhanVien.Name = "ppcNhanVien";
-            this.ppcNhanVien.Size = new System.Drawing.Size(62, 57);
-            this.ppcNhanVien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ppcNhanVien.TabIndex = 0;
-            this.ppcNhanVien.TabStop = false;
-            this.ppcNhanVien.UseTransparentBackground = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.BorderRadius = 4;
-            this.btnClose.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(111)))), ((int)(((byte)(81)))));
-            this.btnClose.CheckedState.Image = global::Presentation.Properties.Resources.icon_home_checked1;
-            this.btnClose.CustomizableEdges.TopRight = false;
-            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(128)))), ((int)(((byte)(25)))));
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Image = global::Presentation.Properties.Resources.icon_close;
-            this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnClose.ImageOffset = new System.Drawing.Point(10, 0);
-            this.btnClose.Location = new System.Drawing.Point(619, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(144, 45);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnClose.TextOffset = new System.Drawing.Point(20, 0);
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
             // dgcMaGH
             // 
@@ -316,6 +193,129 @@
             this.dgcInHD.Name = "dgcInHD";
             this.dgcInHD.ReadOnly = true;
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(111)))), ((int)(((byte)(81)))));
+            this.guna2Panel1.Controls.Add(this.btnHoaDonThanhToan);
+            this.guna2Panel1.Controls.Add(this.label3);
+            this.guna2Panel1.Controls.Add(this.ppcNhanVien);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(775, 73);
+            this.guna2Panel1.TabIndex = 11;
+            // 
+            // btnHoaDonThanhToan
+            // 
+            this.btnHoaDonThanhToan.BorderRadius = 5;
+            this.btnHoaDonThanhToan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHoaDonThanhToan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHoaDonThanhToan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHoaDonThanhToan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHoaDonThanhToan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(170)))), ((int)(((byte)(41)))));
+            this.btnHoaDonThanhToan.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnHoaDonThanhToan.ForeColor = System.Drawing.Color.White;
+            this.btnHoaDonThanhToan.Location = new System.Drawing.Point(582, 12);
+            this.btnHoaDonThanhToan.Name = "btnHoaDonThanhToan";
+            this.btnHoaDonThanhToan.Size = new System.Drawing.Size(181, 45);
+            this.btnHoaDonThanhToan.TabIndex = 2;
+            this.btnHoaDonThanhToan.Text = "Xem hóa đơn đã thanh toán";
+            this.btnHoaDonThanhToan.Click += new System.EventHandler(this.btnHoaDonThanhToan_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(84, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 21);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Hóa đơn";
+            // 
+            // ppcNhanVien
+            // 
+            this.ppcNhanVien.BackColor = System.Drawing.Color.Transparent;
+            this.ppcNhanVien.Image = global::Presentation.Properties.Resources.icon_theloai;
+            this.ppcNhanVien.ImageRotate = 0F;
+            this.ppcNhanVien.Location = new System.Drawing.Point(12, 8);
+            this.ppcNhanVien.Name = "ppcNhanVien";
+            this.ppcNhanVien.Size = new System.Drawing.Size(62, 57);
+            this.ppcNhanVien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ppcNhanVien.TabIndex = 0;
+            this.ppcNhanVien.TabStop = false;
+            this.ppcNhanVien.UseTransparentBackground = true;
+            // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.guna2Panel2.Controls.Add(this.btnClose);
+            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2Panel2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 448);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Size = new System.Drawing.Size(775, 69);
+            this.guna2Panel2.TabIndex = 12;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BorderRadius = 4;
+            this.btnClose.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(111)))), ((int)(((byte)(81)))));
+            this.btnClose.CheckedState.Image = global::Presentation.Properties.Resources.icon_home_checked1;
+            this.btnClose.CustomizableEdges.TopRight = false;
+            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(128)))), ((int)(((byte)(25)))));
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Image = global::Presentation.Properties.Resources.icon_close;
+            this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnClose.ImageOffset = new System.Drawing.Point(10, 0);
+            this.btnClose.Location = new System.Drawing.Point(619, 12);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(144, 45);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnClose.TextOffset = new System.Drawing.Point(20, 0);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::Presentation.Properties.Resources.icon_pencil;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 94;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "";
+            this.dataGridViewImageColumn2.Image = global::Presentation.Properties.Resources.icon_print;
+            this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn2.MinimumWidth = 6;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Width = 94;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "";
+            this.dataGridViewImageColumn3.Image = global::Presentation.Properties.Resources.icon_print;
+            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn3.MinimumWidth = 6;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Width = 86;
+            // 
             // frmGioHang
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -333,8 +333,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgGioHang)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            this.guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ppcNhanVien)).EndInit();
+            this.guna2Panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

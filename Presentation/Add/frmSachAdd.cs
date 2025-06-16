@@ -26,23 +26,24 @@ namespace Presentation
             InitializeComponent();
             _fcha = fcha;
         }
+        private string maTheLoai = "";
+        private string maNCC = "";
         public frmSachAdd(frmSach fcha, bool isEdit, string ma, string ten, string tacgia, string tl, string giaban, string sl, string nxb, string ncc, string namxb) : this(fcha)
         {
             this.isEdit = isEdit;
             this.masach = ma;
 
-            Laydanhsachtheloai();     
-            Laydanhsachmancc();      
-
             txtTenS.Text = ten;
             txtTacG.Text = tacgia;
-            cboTheL.SelectedValue = tl;
             txtGiaB.Text = giaban;
             txtSoLT.Text = sl;
             txtNhaXB.Text = nxb;
-            cboMaNCC.SelectedValue = ncc;
             txtNamXB.Text = namxb;
+
+            maTheLoai = tl;  
+            maNCC = ncc;      
         }
+
 
 
         private DTO_Sach Laythongtintuform()
@@ -83,18 +84,27 @@ namespace Presentation
             cboMaNCC.DataSource = dtMaNCC;
             cboMaNCC.DisplayMember = "TenNCC";
             cboMaNCC.ValueMember = "MaNCC";
-            //cboMaNCC.SelectedIndex = -1;
+            
         }
         private void frmSachAdd_Load(object sender, EventArgs e)
         {
             Laydanhsachtheloai();
             Laydanhsachmancc();
+
             if (string.IsNullOrEmpty(masach))
             {
-                cboTheL.SelectedIndex = -1;  // Đặt ô về trạng thái trống
-                cboMaNCC.SelectedIndex = -1;  // Đặt ô về trạng thái trống
+                cboTheL.SelectedIndex = -1;
+                cboMaNCC.SelectedIndex = -1;
+            }
+            else
+            {
+                cboTheL.Text = maTheLoai;
+             
+                cboMaNCC.Text = maNCC;
             }
         }
+
+
 
         private void pcHinhA_Click(object sender, EventArgs e)
         {

@@ -132,10 +132,24 @@ namespace DAL
         public DataTable TimKiemTaiKhoan(string tukhoa)
         {
             string query = @"
-            SELECT tk.MaTaiKhoan, tk.TenTaiKhoan, tk.MatKhau, tk.Role, nv.TenNV
-            FROM TaiKhoan tk
-            LEFT JOIN NhanVien nv ON tk.MaNV = nv.MaNV
-            WHERE tk.MaTaiKhoan LIKE @Tukhoa OR tk.TenTaiKhoan LIKE N'@Tukhoa' OR tk.MatKhau LIKE @Tukhoa OR nv.TenNV Like @Tukhoa OR tk.Role Like @Tukhoa";
+                    SELECT 
+                        tk.MaTaiKhoan, 
+                        tk.TenTaiKhoan, 
+                        tk.MatKhau, 
+                        tk.Role, 
+                        nv.TenNV
+                    FROM 
+                        TaiKhoan tk
+                    LEFT JOIN 
+                        NhanVien nv ON tk.MaNV = nv.MaNV
+                    WHERE 
+                        tk.isDelete = 0 AND (
+                            tk.MaTaiKhoan LIKE @Tukhoa OR 
+                            tk.TenTaiKhoan LIKE @Tukhoa OR 
+                            tk.MatKhau LIKE @Tukhoa OR 
+                            nv.TenNV LIKE @Tukhoa OR 
+                            tk.Role LIKE @Tukhoa
+                        )";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")

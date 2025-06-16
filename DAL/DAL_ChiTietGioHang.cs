@@ -31,7 +31,7 @@ namespace DAL
             string query = "SELECT gh.MaSach, s.TenSach, gh.SoLuong, gh.GiaBan " +
                "FROM HoaDon_ChiTiet gh " +
                "JOIN Sach s ON gh.MaSach = s.MaSach " +
-               "WHERE gh.MaGioHang = @MaGioHang and isDelete = 0";
+               "WHERE gh.MaGioHang = @MaGioHang and gh.isDelete = 0";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@MaGioHang", MaGioHang)

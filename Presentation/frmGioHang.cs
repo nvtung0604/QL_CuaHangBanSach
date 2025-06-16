@@ -58,7 +58,6 @@ namespace Presentation
             {
                 maGioHang = dgGioHang.CurrentRow.Cells["dgcMaGH"].Value.ToString();
                 this.Close();
-                //fPOS.Show();
                 fPOS.BringToFront();
                 MessageBox.Show($"Đã cập nhật mã giỏ hàng {maGioHang}");
                 

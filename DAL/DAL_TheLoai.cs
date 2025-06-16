@@ -17,7 +17,22 @@ namespace DAL
         // Hiển thị dữ liệu thể loại
         public DataTable HienThiDuLieu()
         {
-            string query = "SELECT * FROM TheLoai where isDelete = 0";
+            string query = @"
+            SELECT 
+                tl.MaTheLoai,
+                tl.TenTheLoai,
+                COUNT(s.MaSach) AS SoLuongSach
+            FROM 
+                TheLoai tl
+            LEFT JOIN 
+                Sach s ON tl.MaTheLoai = s.MaTheLoai AND s.isDelete = 0
+            WHERE 
+                tl.isDelete = 0
+            GROUP BY 
+                tl.MaTheLoai, tl.TenTheLoai
+            ";
+
+
             return kn.HienThiDuLieu(query);
         }
 

@@ -74,13 +74,14 @@ namespace Presentation
                 string ten = dgSach.CurrentRow.Cells["dgcTenS"].Value.ToString();
                 string tacgia = dgSach.CurrentRow.Cells["dgcTacG"].Value.ToString();
                 string tl = dgSach.CurrentRow.Cells["dgcTheL"].Value.ToString();
+             
                 string giaban = dgSach.CurrentRow.Cells["dgcGiaB"].Value.ToString();
                 string soluong = dgSach.CurrentRow.Cells["dgcSoLT"].Value.ToString();
                 string nxb = dgSach.CurrentRow.Cells["dgcNhaXB"].Value.ToString();
                 string ncc = dgSach.CurrentRow.Cells["dgcTenNCC"].Value.ToString();
-                string namxb = dgSach.CurrentRow.Cells["dgcNamXB"].Value.ToString();
 
-                // Tạo 1 instance form với dữ liệu lấy được
+                string namxb = dgSach.CurrentRow.Cells["dgcNamXB"].Value.ToString();
+                
                 frmSachAdd faSachAdd = new frmSachAdd(this, true, ma, ten, tacgia, tl, giaban, soluong, nxb, ncc, namxb);
 
                 // Gán danh sách thể loại, nhà cung cấp

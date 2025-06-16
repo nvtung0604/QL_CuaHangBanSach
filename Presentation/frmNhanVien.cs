@@ -80,7 +80,7 @@ namespace Presentation
                         return;
                     }
 
-                    if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa khách hàng này không?") == DialogResult.Yes)
+                    if (ht.XacNhan(this, "Xác nhận xóa", "Bạn có chắc muốn xóa nhân viên này không?") == DialogResult.Yes)
                     {
                         bll_nv.Xoanhanvien(ma);
                         Hienthidulieu();
