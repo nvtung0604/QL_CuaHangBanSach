@@ -86,7 +86,7 @@ namespace DAL
             string query = "SELECT * FROM Sach s " +
                "JOIN TheLoai t ON s.MaTheLoai = t.MaTheLoai " +
                "JOIN NhaCungCap ncc ON s.MaNCC = ncc.MaNCC " +
-               "WHERE (s.MaSach LIKE @TuKhoa " +
+               "WHERE s.isDelete = 0 AND (s.MaSach LIKE @TuKhoa " +
                "OR s.TenSach LIKE @TuKhoa " +
                "OR s.TacGia LIKE @TuKhoa " +
                "OR s.NhaXuatBan LIKE @TuKhoa " +

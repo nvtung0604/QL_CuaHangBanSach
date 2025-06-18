@@ -43,7 +43,7 @@ namespace Presentation
         }
         // mới thêm
         public int SoLuongTon { get; set; }
-
+        public int SoLuongTonGoc { get; set; }
         public string MaSach { get; set; }
         public decimal GiaBan { get; set; }
         public string TenSach
@@ -57,6 +57,8 @@ namespace Presentation
             get { return pbHinhAnh.Image; }
             set { pbHinhAnh.Image = value; }
         }
+         
+
 
         public event EventHandler onSelect = null;
 

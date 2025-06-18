@@ -136,7 +136,6 @@ namespace Presentation
                     ht.ThongBao(this, "Thông báo", "Vui lòng kiểm tra lại, có trường dữ liệu bị thiếu!", Guna.UI2.WinForms.MessageDialogIcon.Warning);
                     return;
                 }
-                MessageBox.Show(cboTheL.Text);
 
                 // Get book information
                 DTO_Sach sach = Laythongtintuform();

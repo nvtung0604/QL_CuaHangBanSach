@@ -70,7 +70,7 @@ namespace DAL
         // thao tác tìm kiếm
         public DataTable TimKiemTheLoai(string tukhoa)
         {
-            string query = "SELECT * FROM TheLoai WHERE MaTheLoai LIKE @Tukhoa OR TenTheLoai LIKE @Tukhoa AND isDelete = 0";
+            string query = "SELECT * FROM TheLoai WHERE (MaTheLoai LIKE @Tukhoa OR TenTheLoai LIKE @Tukhoa) AND isDelete = 0";
             SqlParameter[] parameters =
             {
                 new SqlParameter("@Tukhoa", "%" + tukhoa + "%")

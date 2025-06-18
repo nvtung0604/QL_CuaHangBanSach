@@ -17,12 +17,14 @@ namespace Presentation
     {
         Hopthoai ht = new Hopthoai();
         BLL_ChiTietGioHang bll_ctgh = new BLL_ChiTietGioHang();
-        private frmPOSs fPOS = new frmPOSs();
+        BLL_GioHang gh = new BLL_GioHang();
+        private frmPOSs fPOS;
         // nghi vấn
         public string maGioHang { get; private set; }
-        public frmGioHang()
+        public frmGioHang(frmPOSs pos)
         {
             InitializeComponent();
+            fPOS = pos;
         }
         PrintDocument printDocument = new PrintDocument();
         Font fontTieuDe = new Font("Arial", 16, FontStyle.Bold);
@@ -44,6 +46,7 @@ namespace Presentation
             dgGioHang.Columns["dgcTenNV"].DataPropertyName = "TenNV";
             dgGioHang.Columns["dgcTongT"].DataPropertyName = "TongTien";
             
+            
         }
         
         private void btnClose_Click_1(object sender, EventArgs e)
@@ -57,12 +60,15 @@ namespace Presentation
             if (dgGioHang.Columns[e.ColumnIndex].Name == "dgcCapNhat")
             {
                 maGioHang = dgGioHang.CurrentRow.Cells["dgcMaGH"].Value.ToString();
+                string sdt = bll_gh.LaySDTTuMaGioHang(maGioHang); // ví dụ
+
+                fPOS.LoadChiTietGioHang(maGioHang, sdt); // gọi đúng instance đang hiển thị
+
                 this.Close();
                 fPOS.BringToFront();
                 MessageBox.Show($"Đã cập nhật mã giỏ hàng {maGioHang}");
-                
-
             }
+
             if (dgGioHang.Columns[e.ColumnIndex].Name == "dgcXoa")
             {
                 try

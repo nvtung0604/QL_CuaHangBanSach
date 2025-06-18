@@ -140,6 +140,22 @@ namespace DAL
             int count = kn.ThucThiScalarSoNguyen(query, parameters);
             return count > 0;
         }
+        public int TruTonKho(string maSach, int soLuongTru)
+        {
+            string query = @"
+                UPDATE Sach 
+                SET SoLuongTon = SoLuongTon - @SoLuongTru 
+                WHERE MaSach = @MaSach AND SoLuongTon >= @SoLuongTru";
+
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                new SqlParameter("@MaSach", maSach),
+                new SqlParameter("@SoLuongTru", soLuongTru)
+                    };
+
+            return kn.ThaoTacDuLieu(query, parameters);
+        }
+
 
     }
 }

@@ -67,6 +67,10 @@ namespace BLL
         {
             return dal_gh.LayTenKhacHangTuSDT(sdt);
         }
+        public string LaySDTTuMaGioHang(string maGH)
+        {
+            return dal_gh.LaySDTTuMaGioHang(maGH);
+        }
     }
 
 }

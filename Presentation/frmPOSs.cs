@@ -16,6 +16,8 @@ using System.Windows.Forms;
 using System.Drawing.Printing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 using System.Web.UI;
+using DocumentFormat.OpenXml.Bibliography;
+using System.Text.RegularExpressions;
 
 namespace Presentation
 {
@@ -35,6 +37,10 @@ namespace Presentation
             MaGioHang = MaGH;
             _manv = manv;
             
+        }
+        public string SetSoDT(string soDT = null)
+        {
+            return soDT;
         }
 
         private void pbClose_Click(object sender, EventArgs e)
@@ -230,87 +236,98 @@ namespace Presentation
             }
         }
 
-        
-        
+
+        private int LaySoLuongTrongGio(string maSach)
+        {
+            int tong = 0;
+            foreach (DataGridViewRow row in dgPOS.Rows)
+            {
+                if (!row.IsNewRow && row.Cells["dgcMaS"].Value.ToString() == maSach)
+                {
+                    tong += Convert.ToInt32(row.Cells["dgcSoL"].Value);
+                }
+            }
+            return tong;
+        }
+
         private void ThemSanPham(string MaSach, string TenSach, string TenTheLoai, string GiaBan, Image HinhAnh, int SoLuongTon)
         {
-            // Validate price
             if (!decimal.TryParse(GiaBan, out decimal parsedPrice))
             {
-                MessageBox.Show("Invalid price format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá bán không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Tạo control sản phẩm
             var w = new ucSanPhamSach()
             {
                 MaSach = MaSach,
                 TenSach = TenSach,
                 GiaBan = parsedPrice,
                 HinHAnh = HinhAnh,
-                SoLuongTon = SoLuongTon
+                SoLuongTon = SoLuongTon,
+                SoLuongTonGoc = SoLuongTon // lưu lại số lượng thực tế
             };
 
-            // Nếu hết hàng thì disable control
             if (SoLuongTon <= 0)
             {
-                //w.Enabled = false;
-
-                w.Cursor = Cursors.Default; // hoặc No tùy thích
-                w.SetHetHang();             // chỉ hiển thị "Hết hàng"
-
+                w.Cursor = Cursors.Default;
+                w.SetHetHang();
             }
             else
             {
-                // Nếu còn hàng thì gắn event chọn
                 w.onSelect += (ss, ee) =>
                 {
                     var wdg = (ucSanPhamSach)ss;
-                    bool tontai = false;
+
+                    int soLuongHienTai = LaySoLuongTrongGio(wdg.MaSach);
+
+                    if (soLuongHienTai >= wdg.SoLuongTonGoc)
+                    {
+                        ht.ThongBao(this, "Cảnh báo", "Số lượng đặt đã đạt giới hạn tồn kho!", MessageDialogIcon.Warning);
+                        return;
+                    }
+
+                    bool daCoTrongGio = false;
 
                     foreach (DataGridViewRow item in dgPOS.Rows)
                     {
                         if (item.Cells["dgcMaS"].Value.ToString() == wdg.MaSach)
                         {
-                            int soluongHienTai = Convert.ToInt32(item.Cells["dgcSoL"].Value);
-                            if (soluongHienTai + 1 > wdg.SoLuongTon)
-                            {
-                                //MessageBox.Show("Số lượng đặt vượt quá tồn kho!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                ht.ThongBao(this, "Cảnh báo", "Số lượng đặt vượt quá tồn kho!", MessageDialogIcon.Warning);
-                                return;
-                            }
+                            int slMoi = Convert.ToInt32(item.Cells["dgcSoL"].Value) + 1;
+                            double gia = Convert.ToDouble(item.Cells["dgcGiaB"].Value);
+                            UpdateProductQuantity(item, slMoi, gia);
 
-                            double giasp = Convert.ToDouble(item.Cells["dgcGiaB"].Value);
-                            UpdateProductQuantity(item, soluongHienTai + 1, giasp);
-                            tontai = true;
+                            daCoTrongGio = true;
                             break;
                         }
                     }
 
-                    if (!tontai)
+                    if (!daCoTrongGio)
                     {
-                        if (1 > wdg.SoLuongTon)
-                        {
-                            MessageBox.Show("Sản phẩm đã hết hàng!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-
                         dgPOS.Rows.Add(new object[]
                         {
-                    dgPOS.Rows.Count + 1,
-                    wdg.MaSach,
-                    wdg.TenSach,
-                    1,
-                    Convert.ToDouble(wdg.GiaBan),
-                    Convert.ToDouble(wdg.GiaBan)
-                        });
+                            dgPOS.Rows.Count + 1,
+                            wdg.MaSach,
+                            wdg.TenSach,
+                            1,
+                            Convert.ToDouble(wdg.GiaBan),
+                            Convert.ToDouble(wdg.GiaBan)
+                                });
+                    }
+
+                    int soLuongConLai = wdg.SoLuongTonGoc - LaySoLuongTrongGio(wdg.MaSach);
+                    wdg.SoLuongTon = soLuongConLai;
+
+                    if (soLuongConLai <= 0)
+                    {
+                        wdg.SetHetHang();
+                        wdg.Enabled = false;
                     }
 
                     Laytong();
                 };
             }
 
-            // Thêm vào FlowLayoutPanel
             flpSach.Controls.Add(w);
         }
 
@@ -351,9 +368,9 @@ namespace Presentation
         public string Macapnhat;
         private void btnXemGioHang_Click(object sender, EventArgs e)
         {
-            frmGioHang fGH = new frmGioHang();
-            //fGH.ShowDialog();
+            frmGioHang fGH = new frmGioHang(this);
             fGH.ShowDialog();
+
             // Kiểm tra giá trị mã giỏ hàng trước khi truyền
             Macapnhat = fGH.maGioHang;
             if (string.IsNullOrEmpty(fGH.maGioHang))
@@ -362,7 +379,7 @@ namespace Presentation
                 return;
             }
 
-            UpdateMaGioHang(fGH.maGioHang); // Truyền giá trị vào để load dữ liệu
+            //UpdateMaGioHang(fGH.maGioHang); // Truyền giá trị vào để load dữ liệu
 
         }
         public void UpdateMaGioHang(string magiohang)
@@ -484,7 +501,7 @@ namespace Presentation
         }
 
         
-        public void LoadChiTietGioHang(string maGH)
+        public void LoadChiTietGioHang(string maGH, string sdt = null)
         {
             dgPOS.Rows.Clear();
             DataTable dt = bll_ctgh.HienThiDuLieu(maGH);
@@ -503,6 +520,7 @@ namespace Presentation
             }
             Laytong();
             btnCapNhatt.Enabled = true;
+            txtSoDT.Text = sdt;
         }
         BLL_POS bll_pos = new BLL_POS();
         private void btnThanhToan_Click(object sender, EventArgs e)
@@ -510,10 +528,6 @@ namespace Presentation
             if (string.IsNullOrEmpty(Macapnhat))
             {
                 // Tạo mới giỏ hàng
-                
-
-
-
                 DTO_GioHang gioHang = new DTO_GioHang
                 {
                     SDT = txtSoDT.Text,
@@ -545,7 +559,12 @@ namespace Presentation
 
                         int kq = bll_ctgh.ThemDuLieuVaoChiTietHoaDon(ctgh);
 
-                        if (kq > 0) soLuongChiTiet++;
+                        if (kq > 0)
+                        {
+                            soLuongChiTiet++;
+
+                            //bus.TruTonKho(maSach, soLuong);
+                        }
                     }
 
                     MessageBox.Show("Đã thêm giỏ hàng và " + soLuongChiTiet + " sản phẩm chi tiết.");
@@ -553,6 +572,15 @@ namespace Presentation
                     if (bll_pos.CapNhatTrangThai(maGioHang) > 0)
                     {
                         ht.ThongBao(this, "Thông báo!", "Đã cập nhật và Thanh toán thành công!", MessageDialogIcon.Information);
+                        foreach (DataGridViewRow row in dgPOS.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+
+                            string maSach = row.Cells["dgcMaS"].Value.ToString();
+                            int soLuong = Convert.ToInt32(row.Cells["dgcSoL"].Value);
+
+                            bus.TruTonKho(maSach, soLuong);
+                        }
                         frmPOS_Load(sender, e);
                     }
 
@@ -566,15 +594,25 @@ namespace Presentation
             else
             {
                 // Đã có mã giỏ hàng, chỉ cần cập nhật trạng thái
-                
                 if (bll_pos.CapNhatTrangThai(Macapnhat) > 0)
                 {
-                    
                     ht.ThongBao(this, "Thông báo!", "Thanh toán thành công!", MessageDialogIcon.Information);
+
+                    foreach (DataGridViewRow row in dgPOS.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        string maSach = row.Cells["dgcMaS"].Value.ToString();
+                        int soLuong = Convert.ToInt32(row.Cells["dgcSoL"].Value);
+
+                        bus.TruTonKho(maSach, soLuong);
+                    }
+
                     Reset();
                 }
             }
         }
+
 
 
 
@@ -754,29 +792,42 @@ namespace Presentation
 
         private void btnCapNhatt_Click(object sender, EventArgs e)
         {
-            int capnhat = 0;
+            if (string.IsNullOrEmpty(Macapnhat))
+            {
+                MessageBox.Show("Không có giỏ hàng để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int tongCapNhat = 0;
+
             foreach (DataGridViewRow row in dgPOS.Rows)
             {
-                if (Macapnhat != null)
-                {
-                    string maGioHang = Macapnhat;
-                    string maSach = row.Cells["dgcMaS"].Value.ToString();
+                if (row.IsNewRow) continue;
 
-                    int soLuong = Convert.ToInt32(row.Cells["dgcSoL"].Value);
-                    decimal giaBan = Convert.ToDecimal(row.Cells["dgcGiaB"].Value);
-                    capnhat = bus.CapNhatChiTietGioHang(maGioHang, maSach, soLuong, giaBan);
-                    
-                }
+                string maSach = row.Cells["dgcMaS"].Value?.ToString();
+                if (string.IsNullOrEmpty(maSach)) continue;
+
+                int soLuong = Convert.ToInt32(row.Cells["dgcSoL"].Value);
+                decimal giaBan = Convert.ToDecimal(row.Cells["dgcGiaB"].Value);
+
+                int kq = bus.CapNhatChiTietGioHang(Macapnhat, maSach, soLuong, giaBan);
+                if (kq > 0) tongCapNhat++;
             }
-            if (capnhat > 0)
+
+            if (tongCapNhat > 0)
             {
-                ht.ThongBao(this, "Thông báo", "Cập nhật thành công!", MessageDialogIcon.Information);
+                ht.ThongBao(this, "Thông báo", $"Đã cập nhật {tongCapNhat} sản phẩm!", MessageDialogIcon.Information);
                 Reset();
                 btnCapNhatt.Enabled = false;
             }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu nào được cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-       
+
+
 
     }
 

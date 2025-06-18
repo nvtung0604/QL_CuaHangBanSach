@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -223,6 +224,20 @@ namespace DAL
                 return dt.Rows[0]["TenKH"].ToString();
             }
             // nếu không tìm thấy
+            return null;
+        }
+        public string LaySDTTuMaGioHang(string maGH) 
+        {
+            string query = "SELECT SDT FROM HoaDon WHERE MaGioHang = @maGH";
+            SqlParameter[] sqlParameters =
+            {
+                new SqlParameter("@maGH", maGH)
+            };
+            DataTable dt = kn.HienThiDuLieu(query, sqlParameters);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["SDT"].ToString();
+            }
             return null;
         }
 

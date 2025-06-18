@@ -3,6 +3,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -81,6 +82,10 @@ namespace BLL
         public bool KiemTraMaHoaDon(string magh)
         {
             return dal_pos.KiemTraMaHoaDon(magh);
+        }
+        public int TruTonKho(string ms, int sl)
+        {
+            return dal_pos.TruTonKho(ms, sl);
         }
     }
 }
